@@ -19,7 +19,9 @@
           <span
             ><b
               ><a href="Login.html" id="MP_item">로그인</a>
-              <a href="CreateAcount.html" id="MP_item">회원가입</a></b
+              <a href="#" id="profile">아이디</a>
+              <a href="CreateAcount.html" id="MP_item">회원가입</a>
+              <a href="#" id="logout">로그아웃</a></b
             ></span
           >
         </div>
@@ -40,20 +42,49 @@
 
     <div class="MP_container">
       <aside>
-        <input type="text" placeholder="검색" size="20" />
-        <br /><br /><br />
-        <h3>인기글</h3>
+        <input
+          type="text"
+          method="POST"
+          id="search"
+          placeholder="검색"
+          size="20"
+          onkeyup="if(window.event.keyCode==13){test()}"
+        />
         <hr />
-        <br />
-        <h3>인기멤버</h3>
+        <div id="side_box">
+          <h3>인기 글</h3>
+          <ul id="side_menu">
+            <li>인기1</li>
+            <li>인기2</li>
+            <li>인기3</li>
+          </ul>
+        </div>
+        <hr />
+        <div id="side_box">
+          <h3>인기 멤버</h3>
+          <ul id="side_menu">
+            <li>인기1</li>
+            <li>인기2</li>
+            <li>인기3</li>
+          </ul>
+        </div>
         <hr />
       </aside>
 
-      <section>
-        <div>기본 메인페이지 화면</div>
-      </section>
+      <div id="article">
+        <section>
+          <img src="user_icon.ico" alt="" />
+        </section>
+        <div>&nbsp;</div>
+        <section>
+          <img src="title_icon.ico" alt="" />
+        </section>
+      </div>
+      <aside>
+        일단 공간 마련함 <br />우아아아앙앙<br />우아아아아아아아아아<br />
+      </aside>
     </div>
-
-    <footer>해울해 파이팅~ ~~~ ~~~~~~~~</footer>
+    <footer>made by hwh</footer>
+    <script src="index.js"></script>
   </body>
 </html>

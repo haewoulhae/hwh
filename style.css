@@ -311,16 +311,32 @@ footer {
 #findPW-form > input[type="submit"] {
   color: #fff;
   font-size: 16px;
-  background-color: #cdcdcd;
+  background-color: #999898;
   margin-top: 20px;
 }
 #MP_item {
   text-decoration: none;
   color: black;
+  border-radius: 5px;
 }
 h1 a {
   text-decoration: none;
 }
-#MP_item :hover {
-  background-color: gray;
+#MP_item:hover {
+  background: rgb(214, 214, 214);
+}
+#article {
+  width: 80%;
+}
+#side_menu {
+  margin-left: 10%;
+}
+#side_box {
+  height: 40%;
+}
+#profile {
+  display: none;
+}
+#logout {
+  display: none;
 }
