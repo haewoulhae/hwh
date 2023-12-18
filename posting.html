@@ -4,50 +4,77 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="posting.css" />
   </head>
   <body>
-    <section>
-      <div class="card">
-        <!-- 게시판을 누를시 첫 페이지인 index.html로 이동 -->
-        <h1><a href="#">게시판</a></h1>
-        <div class="card-write">
-          <div class="myinfo">
-            <!-- text만 입력하기 위해 input에서 type="text" 지정 -->
-            이름<input
-              type="text"
-              name="name"
-              placeholder="이름을 입력하세요."
-            />
-
-            <!-- password만 입력하기 위해 input에서 type="password" 지정 -->
-            비밀번호<input
-              type="password"
-              placeholder="비밀번호를 입력하세요."
-            />
-          </div>
-          <div class="title-w">
-            제목<input
-              type="text"
-              name="subject"
-              placeholder="제목을 입력하세요."
-            />
-          </div>
-
-          <div class="msg">
-            <!-- 내용을 입력하기 위해 textarea tag를 이용 -->
-            내용<textarea
-              name="content"
-              placeholder="내용을 입력하세요."
-            ></textarea>
-            <input type="file" name="attach" id="btnAttach" multiple /><br />
-          </div>
+    <header>
+      <div>
+        <div class="MP_Title">
+          <span
+            ><img src="title_icon.ico" />
+            <h1><a href="index.html" id="MP_item">해 울 해</a></h1></span
+          >
         </div>
-        <div class="btn-w">
-          <input type="button" id="btnInsert" /><a href="#">저장</a>
-          <input type="button" id="btnSelect" /><a href="#">취소</a>
+        <div class="login">
+          <span
+            ><b
+              ><a href="Login.html" id="MP_item">로그인</a>
+              <a href="CreateAcount.html" id="MP_item">회원가입</a></b
+            ></span
+          >
         </div>
       </div>
-    </section>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="#" id="MP_item">HTML</a></li>
+        <li><a href="#" id="MP_item">CSS</a></li>
+        <li><a href="#" id="MP_item">JavaScript</a></li>
+        <li><a href="#" id="MP_item">Seminar</a></li>
+        <li><a href="#" id="MP_item">Project</a></li>
+      </ul>
+    </nav>
+    <br />
+
+    <div class="MP_container">
+      <aside>
+        <input type="text" placeholder="검색" size="20" />
+        <br /><br /><br />
+        <h3>인기글</h3>
+        <hr />
+        <br />
+        <h3>인기멤버</h3>
+        <hr />
+      </aside>
+      <section>
+        <div class="pt">
+          <!-- 게시판을 누를시 첫 페이지인 index.html로 이동 -->
+          <h1><a href="#">게시글 작성</a></h1>
+          <div class="pt-write">
+            <div class="pt-title">
+              <input
+                type="text"
+                name="subject"
+                placeholder="제목을 입력하세요."
+              />
+            </div>
+
+            <div class="pt-text">
+              <!-- 내용을 입력하기 위해 textarea tag를 이용 -->
+              <textarea
+                name="content"
+                placeholder="내용을 입력하세요."
+              ></textarea>
+              <input type="file" name="attach" id="btnAttach" multiple /><br />
+            </div>
+          </div>
+          <div class="pt-btn">
+            <button class="pt-btn-" type="button" onclick="post()">등록</button>
+          </div>
+        </div>
+      </section>
+    </div>
+    <footer>해울해 파이팅~ ~~~ ~~~~~~~~</footer>
   </body>
 </html>

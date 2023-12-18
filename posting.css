@@ -12,25 +12,23 @@ a {
   text-decoration: none;
 }
 
-.card {
-  /* display: flex;
-    justify-content: center;
-    align-items: center; */
+.pt {
+  margin-right: 20%;
   display: grid;
   place-items: center;
-  padding-top: 150px;
 }
 
-.card h1 {
-  font-size: 30px;
+.pt h1 {
+  margin-left: 25%;
+  font-size: 40px;
 }
 
-.card-write {
-  padding: 100px;
+.pt-write {
+  padding: 50px;
   padding-bottom: 0px;
 }
 
-.card-write input,
+.pt-write input,
 textarea {
   margin-left: 10px;
   padding: 10px;
@@ -39,47 +37,38 @@ textarea {
   box-shadow: 3px 3px 10px #e6e6e6;
 }
 
-.card-write .myinfo input[type="text"] {
-  width: 25%;
-  margin-right: 50px;
-}
-.card-write .myinfo input[type="password"] {
-  width: 31%;
-  /* margin-right: 50px; */
-}
-
-.card-write .title-w input[type="text"] {
-  margin-top: 20px;
+.pt-write .pt-title input[type="text"] {
   margin-bottom: 20px;
-  width: 85.5%;
+  width: 150%;
+  border: none;
 }
 
-.card-write .msg textarea {
-  min-width: 85.5%;
-  max-width: 85.5%;
-  min-height: 200px;
-  max-height: 200px;
+.pt-write .pt-text textarea {
+  width: 150%;
+  height: 500px;
+  font: inherit;
+  font-weight: bold;
+  border: none;
+  resize: none;
   box-shadow: inset 3px 3px 10px #e6e6e6;
-
   /* vertical-align: 텍스트를 수직, 수평 정렬 할 수 있다. */
   vertical-align: top;
 }
 
-.card-write input[type="file"] {
+.pt-write input[type="file"] {
   border: none;
   box-shadow: none;
   padding: 10px;
-  margin-left: 40px;
 }
 
-.btn-w {
+.pt-btn {
   /* position: absolute;
     right: 0;
     bottom: 0; */
-  padding-left: 400px;
+  padding-left: 90%;
 }
 
-.btn-w a {
+.pt-btn- {
   background-color: tomato;
   padding: 10px;
   color: #fff;
