@@ -1,0 +1,35 @@
+#m_body {
+  padding: 0;
+  margin: 0;
+}
+#m_ul,
+#m_li {
+  list-style: none;
+}
+#m_li a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 15px;
+}
+#m_nav {
+  width: 80%;
+  overflow: hidden;
+  height: 80px;
+  background-color: #ffffff;
+  margin: 50px auto;
+  text-align: right;
+  border-width: 0px 0px 2px 0px;
+  border-style: solid;
+}
+#m_nav > ul {
+  display: inline-block;
+}
+#m_nav > ul #m_li {
+  float: left;
+  padding: 0 30px;
+  line-height: 80px;
+}
+#m_logo {
+  float: left;
+  font-size: 60px;
+}
