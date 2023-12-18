@@ -87,7 +87,7 @@ header .MP_user-info span {
 }
 
 header .login {
-  /* BasePage 로그인 css */
+  /* index 로그인 css */
   position: absolute; /* absolute - 부모 기준으로 위치 지정 */
   top: 22px;
   right: 30px;
@@ -96,7 +96,6 @@ header .login {
 }
 
 header .login a {
-  text-underline-offset: 2px; /* 밑줄 간격 */
   color: black;
   margin-right: 20px;
 }
@@ -142,6 +141,7 @@ aside {
 }
 
 aside > input {
+  /* 검색 창 css */
   width: 100%;
   height: 40px;
   padding: 0 10px;
@@ -321,6 +321,25 @@ footer {
 h1 a {
   text-decoration: none;
 }
-#MP_item :hover {
+#MP_item:hover {
   background-color: gray;
+}
+
+
+
+.mypost_name {
+  text-align: left;
+}
+.mypost_time {
+  text-align: right;
+  width:120px;
+  color:#b1b1b1;
+}
+.mypost_user {
+  text-align: right;
+  color:#889ee8;
+
+}
+section table {
+  width:95%;
 }
