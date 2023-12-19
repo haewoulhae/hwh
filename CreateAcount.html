@@ -76,17 +76,18 @@
         <div class="CA-wrapper">
           <h2>회원가입</h2>
           <form method="post" action="url" id="CA-form">
-            <input type="text" name="name" placeholder="이름" />
-            <input type="text" name="id" placeholder="ID" />
-            <input type="password" name="password" placeholder="Password" />
-            <input type="text" name="nickname" placeholder="닉네임" />
+            <input type="text" name="name" placeholder="이름" id="create"/>
+            <input type="text" name="id" placeholder="ID" id="create"/>
+            <input type="password" name="password" placeholder="Password" id="create"/>
+            <input type="text" name="nickname" placeholder="닉네임" id="create"/>
             <input
               type="mail"
               name="mail"
               placeholder="이메일 ( hoseo@naver.com )"
+              id="create"
             />
-            <input type="text" name="question" placeholder="좋아하는 과일은?" />
-            <input type="submit" value="회원가입" />
+            <input type="text" name="question" placeholder="좋아하는 과일은?"  id="create" />
+            <button onclick="create()" id="create">회원가입</button>
           </form>
         </div>
       </section>
