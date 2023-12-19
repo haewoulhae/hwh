@@ -22,8 +22,9 @@
     overflow: hidden; /* 넘치면 글자 숨김*/
     text-overflow: ellipsis; /* ... 해주는 친구 */
     white-space: nowrap; /* 아래줄로 안넘어가게 고정 */
-    width: 150px;
-    margin-left: 12%;
+    width: 100px;
+    margin-right: 22%;
+    box-sizing: border-box;
 }
 .b1, .b2, .b3 {
     margin-right: 4%;
