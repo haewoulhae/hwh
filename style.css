@@ -317,29 +317,39 @@ footer {
 #MP_item {
   text-decoration: none;
   color: black;
+  border-radius: 5px;
 }
 h1 a {
   text-decoration: none;
 }
 #MP_item:hover {
-  background-color: gray;
+  background: rgb(214, 214, 214);
 }
 
-
-
-.mypost_name {
-  text-align: left;
+#MP_post {
+  text-decoration: none;
+  color: #383838;
 }
+
 .mypost_time {
   text-align: right;
   width:120px;
   color:#b1b1b1;
-}
-.mypost_user {
-  text-align: right;
-  color:#889ee8;
-
+  margin-left: 1%;
 }
 section table {
-  width:95%;
+  width:100%;
+  border: none;
+}
+.mypost_user {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space:nowrap;
+  width: 100px;
+  color:#889ee8;
+}
+
+section span{
+  display: block;
+  float: right;
 }
