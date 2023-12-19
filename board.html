@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HWH_index</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="posting.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div>
+        <div class="MP_Title">
+          <span
+            ><img src="title.svg" />
+            <h1><a href="index.html" id="MP_item">해 울 해</a></h1></span
+          >
+        </div>
+        <div class="login">
+          <span
+            ><b
+              ><a href="Login.html" id="MP_item">로그인</a>
+              <a href="#" id="profile">아이디</a>
+              <a href="CreateAcount.html" id="MP_item">회원가입</a>
+              <a href="#" id="logout">로그아웃</a></b
+            ></span
+          >
+        </div>
+      </div>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="List.html" id="MP_item">HTML</a></li>
+        <li><a href="List.html" id="MP_item">CSS</a></li>
+        <li><a href="List.html" id="MP_item">JavaScript</a></li>
+        <li><a href="List.html" id="MP_item">Seminar</a></li>
+        <li><a href="List.html" id="MP_item">Project</a></li>
+      </ul>
+    </nav>
+
+    <br />
+
+    <div class="MP_container">
+      <aside>
+        <input
+          type="text"
+          method="POST"
+          id="search"
+          placeholder="검색"
+          size="20"
+          onkeyup="if(window.event.keyCode==13){test()}"
+        />
+        <hr />
+        <div id="side_box">
+          <h3>인기 글</h3>
+          <ul id="side_menu">
+            <li>인기1</li>
+            <li>인기2</li>
+            <li>인기3</li>
+          </ul>
+        </div>
+        <hr />
+        <div id="side_box">
+          <h3>인기 멤버</h3>
+          <ul id="side_menu">
+            <li>인기1</li>
+            <li>인기2</li>
+            <li>인기3</li>
+          </ul>
+        </div>
+        <hr />
+      </aside>
+
+      <section>
+        <h3>게시글 보이는 페이지</h3>
+        <div class="pt-container">
+          <h1>HTML이란...</h1>
+          <br />
+          <img
+            src="/image/바다배경코딩맨1.png"
+            alt="게시물 이미지"
+            width="500"
+            height="500"
+          />
+          <br /><br />
+          <div>
+            html이란<br />h : hello<br />t : tv<br />
+            m : my<br />
+            l : love
+          </div>
+        </div>
+        <!-- <span style="margin-left: 50%"
+          ><b class="bd-title" id="bd-title"></b
+        ></span> -->
+        <div class="pt-btn-con">
+          <button
+            onclick="location.href='posting.html'"
+            class="bd-ct-btn bd-pt-btn"
+          >
+            게시글 작성
+          </button>
+        </div>
+      </section>
+    </div>
+    <footer>made by hwh</footer>
+    <script src="index.js"></script>
+  </body>
+</html>
