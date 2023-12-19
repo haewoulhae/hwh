@@ -340,3 +340,13 @@ h1 a {
 #logout {
   display: none;
 }
+#mainUp{
+  height: 45%;
+  background-image: url("maincoding.png");
+  background-size: cover;
+}
+#aside{
+  background-image: url("sideimg.png");
+  background-size: cover;
+  margin-bottom: 100px;
+}
