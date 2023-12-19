@@ -43,12 +43,32 @@
 
     <div class="MP_container">
       <aside>
-        <input type="text" placeholder="검색" size="20" />
-        <br /><br /><br />
-        <h3>인기글</h3>
+        <input
+          type="text"
+          method="POST"
+          id="search"
+          placeholder="검색"
+          size="20"
+          onkeyup="if(window.event.keyCode==13){test()}"
+        />
         <hr />
-        <br />
-        <h3>인기멤버</h3>
+        <div id="side_box">
+          <h3>인기 글</h3>
+          <ul id="side_menu">
+            <li>인기1</li>
+            <li>인기2</li>
+            <li>인기3</li>
+          </ul>
+        </div>
+        <hr />
+        <div id="side_box">
+          <h3>인기 멤버</h3>
+          <ul id="side_menu">
+            <li>인기1</li>
+            <li>인기2</li>
+            <li>인기3</li>
+          </ul>
+        </div>
         <hr />
       </aside>
 
@@ -65,5 +85,6 @@
     </div>
 
     <footer>해울해 파이팅~ ~~~ ~~~~~~~~</footer>
+    <script src="index.js"></script>
   </body>
 </html>
