@@ -165,6 +165,9 @@ section {
 
   border-radius: 20px;
 }
+section .post-btn {
+  float: right;
+}
 
 section h3 {
   color: #3d3d3d;
