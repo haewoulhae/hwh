@@ -3,12 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>HWH_index</title>
+    <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="posting.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
@@ -19,11 +22,19 @@
             <h1><a href="index.html" id="MP_item">해 울 해</a></h1></span
           >
         </div>
-        <div class="MP_user-info">
-          <span><a href="Mypage.html"><img src="user_icon.ico" /></a>user_ID</span>
+        <div class="login">
+          <span
+            ><b
+              ><a href="Login.html" id="MP_item">로그인</a>
+              <a href="#" id="profile">아이디</a>
+              <a href="CreateAcount.html" id="MP_item">회원가입</a>
+              <a href="#" id="logout">로그아웃</a></b
+            ></span
+          >
         </div>
       </div>
     </header>
+
     <nav>
       <ul>
         <li><a href="List.html" id="MP_item">HTML</a></li>
@@ -32,46 +43,70 @@
         <li><a href="List.html" id="MP_item">Seminar</a></li>
         <li><a href="List.html" id="MP_item">Project</a></li>
       </ul>
-      <!--안녕하세요-->
     </nav>
 
     <br />
-    <section>
-      <div class="card">
-        <!-- 게시판을 누를시 첫 페이지인 index.html로 이동 -->
-        <h1><a href="#">게시판</a></h1>
-        <div class="card-write">
-          <div class="myinfo">
-            <!-- text만 입력하기 위해 input에서 type="text" 지정 -->
-            이름<input
-              type="text"
-              name="name"
-              placeholder="이름을 입력하세요."
-            />
 
-            <!-- password만 입력하기 위해 input에서 type="password" 지정 -->
-            비밀번호<input
-              type="password"
-              placeholder="비밀번호를 입력하세요."
-            />
-          </div>
-          <div class="title-w">
-            제목<input
-              type="text"
-              name="subject"
-              placeholder="제목을 입력하세요."
-            />
-          </div>
+    <div class="MP_container">
+      <aside>
+        <input
+          type="text"
+          method="POST"
+          id="search"
+          placeholder="검색"
+          size="20"
+          onkeyup="if(window.event.keyCode==13){test()}"
+        />
+        <hr />
+        <div id="side_box">
+          <h3>인기 글</h3>
+          <ul id="side_menu">
+            <li>인기1</li>
+            <li>인기2</li>
+            <li>인기3</li>
+          </ul>
+        </div>
+        <hr />
+        <div id="side_box">
+          <h3>인기 멤버</h3>
+          <ul id="side_menu">
+            <li>인기1</li>
+            <li>인기2</li>
+            <li>인기3</li>
+          </ul>
+        </div>
+        <hr />
+      </aside>
 
-          <div class="msg">
-            <!-- 내용을 입력하기 위해 textarea tag를 이용 -->
-            내용<textarea
-              name="content"
-              placeholder="내용을 입력하세요."
-            ></textarea>
-            <input type="file" name="attach" id="btnAttach" multiple /><br />
+      <section>
+        <div class="pt">
+          <!-- 게시판을 누를시 첫 페이지인 index.html로 이동 -->
+          <h1><a href="#">게시글 작성</a></h1>
+          <div class="pt-write">
+            <div class="pt-title">
+              <input
+                id="inputTitle"
+                type="text"
+                name="subject"
+                placeholder="제목을 입력하세요."
+              />
+            </div>
+
+            <div class="pt-text">
+              <!-- 내용을 입력하기 위해 textarea tag를 이용 -->
+              <textarea
+                id="inputText"
+                name="content"
+                placeholder="내용을 입력하세요."
+              ></textarea>
+              <input type="file" name="attach" id="btnAttach" multiple /><br />
+            </div>
+          </div>
+          <div class="pt-btn">
+            <button class="pt-btn-" type="button" onclick="post()">등록</button>
           </div>
         </div>
+<<<<<<< HEAD
         <div class="btn-w">
           <input type="button" id="btnInsert" /><a href="#">저장</a>
           <input type="button" id="btnSelect" /><a href="#">취소</a>
@@ -79,5 +114,20 @@
       </div>
     </section>
     <script src="index.js"></script>
+=======
+      </section>
+    </div>
+    <footer>해울해 파이팅~ ~~~ ~~~~~~~~</footer>
+    <script>
+      function post() {
+        var inputTitle = document.getElementById("inputTitle").value;
+        var inputText = document.getElementById("inputText").value;
+
+        alert("게시글 작성완료");
+        console.log("제목: " + inputTitle);
+        console.log("내용: " + inputText);
+      }
+    </script>
+>>>>>>> cb036fb50107d0bb065757bab1c4407a3e8d3949
   </body>
 </html>
