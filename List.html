@@ -11,11 +11,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic&display=swap" rel="stylesheet">
 </head>
 <body>
-
 <header>
     <div>
         <div class="MP_Title">
-            <span><h1><a href="index.html" id="MP_item">해 울 해</a></h1></span>
+            <span>
+                <img src="title.svg" /><h1><a href="index.html" id="MP_item">해 울 해</a></h1></span>
         </div>
         <div class="login">
             <span><b><a href="Login.html">로그인</a> <a href="CreateAcount.html">회원가입</a></b></span>
@@ -37,13 +37,34 @@
 
 <div class="MP_container">
     <aside>
-        <input type="text" placeholder="검색" size="20">
-        <br><br><br>
-        <h3>인기글</h3>
-        <hr><br>
-        <h3>인기멤버</h3>
-        <hr>
-    </aside>
+        <input
+          type="text"
+          method="POST"
+          id="search"
+          placeholder="검색"
+          size="20"
+          onkeyup="if(window.event.keyCode==13){test()}"
+        />
+        <hr />
+        <div id="side_box">
+          <h3>인기 글</h3>
+          <ul id="side_menu">
+            <li>인기1</li>
+            <li>인기2</li>
+            <li>인기3</li>
+          </ul>
+        </div>
+        <hr />
+        <div id="side_box">
+          <h3>인기 멤버</h3>
+          <ul id="side_menu">
+            <li>인기1</li>
+            <li>인기2</li>
+            <li>인기3</li>
+          </ul>
+        </div>
+        <hr />
+      </aside>
 
     <section>
         <article class="list_box">
