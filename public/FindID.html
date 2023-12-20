@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HWH_CA</title>
+    <title>HWH_FindID</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,7 @@
       <div>
         <div class="MP_Title">
           <span
-            ><img src="title.svg" />
+            ><img src="image/title.svg" />
             <h1><a href="index.html" id="MP_item">해 울 해</a></h1></span
           >
         </div>
@@ -43,50 +43,22 @@
 
     <div class="MP_container">
       <aside>
-        <input
-          type="text"
-          method="POST"
-          id="search"
-          placeholder="검색"
-          size="20"
-          onkeyup="if(window.event.keyCode==13){test()}"
-        />
+        <input type="text" placeholder="검색" size="20" />
+        <br /><br /><br />
+        <h3>인기글</h3>
         <hr />
-        <div id="side_box">
-          <h3>인기 글</h3>
-          <ul id="side_menu">
-            <li>인기1</li>
-            <li>인기2</li>
-            <li>인기3</li>
-          </ul>
-        </div>
-        <hr />
-        <div id="side_box">
-          <h3>인기 멤버</h3>
-          <ul id="side_menu">
-            <li>인기1</li>
-            <li>인기2</li>
-            <li>인기3</li>
-          </ul>
-        </div>
+        <br />
+        <h3>인기멤버</h3>
         <hr />
       </aside>
 
       <section>
-        <div class="CA-wrapper">
-          <h2>회원가입</h2>
-          <form method="post" action="url" id="CA-form">
-            <input type="text" name="name" placeholder="이름" />
-            <input type="text" name="id" placeholder="ID" />
-            <input type="password" name="password" placeholder="Password" />
-            <input type="text" name="nickname" placeholder="닉네임" />
-            <input
-              type="mail"
-              name="mail"
-              placeholder="이메일 ( hoseo@naver.com )"
-            />
-            <input type="text" name="question" placeholder="좋아하는 과일은?" />
-            <input type="submit" value="회원가입" />
+        <div class="findID-wrapper">
+          <h2>아이디 찾기</h2>
+          <form method="post" action="url" id="findID-form">
+            <input type="text" name="id" placeholder="이름" />
+            <input type="mail" name="mail" placeholder="이메일" />
+            <input type="submit" value="확인" />
           </form>
         </div>
       </section>
