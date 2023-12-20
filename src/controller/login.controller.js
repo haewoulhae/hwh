@@ -1,12 +1,12 @@
-const cfService = require("../service/cf.service");
+const loginService = require("../service/login.service");
 
-async function postBoard(req, res, next) {
-    const postBoard_req = req.query;
-    const postBoard_data = await cfService.postBoard(postBoard_req);
-    return res.status(postBoard_data.status).json(postBoard_data);
+async function signUp(req, res, next) {
+    const signUp_req = req.query;
+    const signUp_data = await loginService.signUp(signUp_req);
+    return res.status(signUp_data.status).json(signUp_data);
 }
 
 
 module.exports = {
-    postBoard
+    signUp
 };

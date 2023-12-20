@@ -17,6 +17,13 @@
         param.webid=document.getElementsByName("id").values;
         param.webpw=document.getElementsByName("pw").values;
         param.user_ans=document.getElementsByName("question").values;
+        var ajax = $.ajax({
+          url: "/create",
+          data: param,
+          type: "POST",
+          dataType: "JSON"
+        });
+        location.href("index.html")
       }
     </script>
   </head>
@@ -86,7 +93,7 @@
       <section>
         <div class="CA-wrapper">
           <h2>회원가입</h2>
-          <form method="post" action="/create" id="CA-form">
+          <form action="/create" method="post" id="CA-form">
             <input type="text" name="name" placeholder="이름" class="create"/>
             <input type="text" name="id" placeholder="ID" class="create"/>
             <input type="password" name="password" placeholder="Password" class="create"/>
@@ -98,15 +105,7 @@
               class="create"
             />
             <input type="text" name="question" placeholder="좋아하는 과일은?"  class="create" />
-            <input type="submit" onclick="create()" class="createBtn" value="회원가입">
-        <div class="findPW-wrapper">
-          <h2>비밀번호 찾기</h2>
-          <form method="post" action="url" id="findPW-form">
-            <input type="text" name="id" placeholder="아이디" />
-            <input type="text" name="question" placeholder="좋아하는 과일은?" />
-            <input type="submit" value="확인" />
-          </form>
-        </div>
+            <input type="submit" onclick="signUp()" class="createBtn" value="회원가입">
       </section>
     </div>
 

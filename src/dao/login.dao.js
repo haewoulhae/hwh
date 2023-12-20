@@ -1,8 +1,10 @@
 const db = require("../config/db");
 
-async function postBoard(req) {
+async function signUp(req) {
     return new Promise((resolve, reject) => {
-        var queryData = `query`;
+        var queryData = `insert into user(user_name ,nickname ,email, webid, webpw, user_ans) 
+        values('${req.user_name}','${req.nickname}','${req.email}','${req.webid}','${req.webpw}','${req.user_ans}' )`;
+        console.log(queryData)
         db.query(queryData, (error, db_data) => {
             if(error) {
                 console.log("DB error [Board]" + "\n \t" + queryData + "\n \t" + error);
@@ -14,5 +16,5 @@ async function postBoard(req) {
 }
 
 module.exports = {
-    postBoard
+    signUp
 }

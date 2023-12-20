@@ -10,7 +10,6 @@ var mypageRouter = require("./src/routes/mypage.routes");
 var publicRouter = require("./src/routes/public.routes");
 
 var app = express();
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/', express.static(path.join(__dirname,'public')));
@@ -37,6 +36,9 @@ app.use("/mypage", (req, res) => {
 });
 app.use("/public", publicRouter);
 
+app.get("/create", (req, res) => {
+    return res.sendFile(__dirname + "/public/CreateAcount.html");
+  })
 // 포트 열리는지 테스트 !
 // app.get('/', function(req, res) {
 //     res.send('안뇽');

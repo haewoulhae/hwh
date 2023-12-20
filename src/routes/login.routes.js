@@ -1,7 +1,7 @@
 var express = require("express");
 const router = express.Router();
-const cfController = require("../controller/cf.controller")
+const loginController = require("../controller/login.controller")
 
-router.get("/postBoard", cfController.postBoard);
+router.get("/create", loginController.signUp);
 
 module.exports = router;

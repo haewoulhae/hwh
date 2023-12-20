@@ -1,6 +1,6 @@
-const cfDao = require("../dao/cf.dao");
+const loginDao = require("../dao/login.dao");
 
-async function postBoard(req) {
+async function signUp(req) {
     try {
         if(!req) {
             return {
@@ -8,11 +8,11 @@ async function postBoard(req) {
                 "Status" : 406
             }
         }
-        const postBoard_data = await cfDao.postBoard(req);
+        const signUp_data = await loginDao.signUp(req);
         return {
             "Message" : "성공",
             "Status" : 200,
-            "Data" : postBoard_data
+            "Data" : signUp_data
         }
     } catch(err) {
         return {
@@ -24,5 +24,5 @@ async function postBoard(req) {
 }
 
 module.exports = {
-    postBoard
+    signUp
 }
