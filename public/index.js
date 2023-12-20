@@ -1,10 +1,14 @@
 window.onload = function () {
+<<<<<<< HEAD
   const name = document.getElementsByName("name")
   const id = document.getElementsByName("id")
   const pw = document.getElementsByName("password")
   const nickname = document.getElementsByName("nickname")
   const email = document.getElementsByName("mail")
   const answer = document.getElementsByName("question")
+=======
+
+>>>>>>> feature/list
 };
 function test() {
   alert("입력 감지");
@@ -12,6 +16,7 @@ function test() {
   console.log(data.value);
   data.value=""
 }
+<<<<<<< HEAD
 function ad(){
   alert("매너 합시다 ^ㅡ^")
 }
@@ -20,3 +25,5 @@ function create(){
   const data = document.getElementsByName("name")
   console.log(data.value)
 }
+=======
+>>>>>>> feature/list
