@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Gowun Batang';
+  font-family: "Gowun Batang";
 }
 
 li {
@@ -28,6 +28,9 @@ a {
 .pt-write {
   padding: 50px;
   padding-bottom: 0px;
+}
+.pt-title {
+  font-size: 55px;
 }
 
 .pt-write input,
