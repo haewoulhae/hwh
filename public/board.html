@@ -18,7 +18,7 @@
       <div>
         <div class="MP_Title">
           <span
-            ><img src="title.svg" />
+            ><img src="image/title.svg" />
             <h1><a href="index.html" id="MP_item">해 울 해</a></h1></span
           >
         </div>
@@ -79,45 +79,37 @@
       </aside>
 
       <section>
-        <div class="pt">
-          <!-- 게시판을 누를시 첫 페이지인 index.html로 이동 -->
-          <h1><a href="#">게시글 작성</a></h1>
-          <div class="pt-write">
-            <div class="pt-title">
-              <input
-                id="inputTitle"
-                type="text"
-                name="subject"
-                placeholder="제목을 입력하세요."
-              />
-            </div>
-
-            <div class="pt-text">
-              <!-- 내용을 입력하기 위해 textarea tag를 이용 -->
-              <textarea
-                id="inputText"
-                name="content"
-                placeholder="내용을 입력하세요."
-              ></textarea>
-              <input type="file" name="attach" id="btnAttach" multiple /><br />
-            </div>
+        <h3>게시글 보이는 페이지</h3>
+        <div class="pt-container">
+          <h1>HTML이란...</h1>
+          <br />
+          <img
+            src="image/바다배경코딩맨1.png"
+            alt="게시물 이미지"
+            width="500"
+            height="500"
+          />
+          <br /><br />
+          <div>
+            html이란<br />h : hello<br />t : tv<br />
+            m : my<br />
+            l : love
           </div>
-          <div class="pt-btn">
-            <button class="pt-btn-" type="button" onclick="post()">등록</button>
-          </div>
+        </div>
+        <!-- <span style="margin-left: 50%"
+          ><b class="bd-title" id="bd-title"></b
+        ></span> -->
+        <div class="pt-btn-con">
+          <button
+            onclick="location.href='posting.html'"
+            class="bd-ct-btn bd-pt-btn"
+          >
+            게시글 작성
+          </button>
         </div>
       </section>
     </div>
-    <footer>해울해 파이팅~ ~~~ ~~~~~~~~</footer>
-    <script>
-      function post() {
-        var inputTitle = document.getElementById("inputTitle").value;
-        var inputText = document.getElementById("inputText").value;
-
-        alert("게시글 작성완료");
-        console.log("제목: " + inputTitle);
-        console.log("내용: " + inputText);
-      }
-    </script>
+    <footer>made by hwh</footer>
+    <script src="index.js"></script>
   </body>
 </html>
