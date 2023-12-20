@@ -85,8 +85,7 @@ textarea {
   padding-top: 1em;
   margin-top: 1em;
   border-top: solid 1px #ccc;
-  width: 90%;
-  margin: 40px auto;
+  width: 100%;
   text-align: center;
 }
 .bd-ct-btn {
