@@ -1,5 +1,0 @@
-<<<<<<< HEAD
-=======
-var app = require("../../app");
-//var debug = require('debug')
->>>>>>> feature/posting
