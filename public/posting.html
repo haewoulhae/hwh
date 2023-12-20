@@ -18,7 +18,11 @@
       <div>
         <div class="MP_Title">
           <span
+<<<<<<< HEAD
             ><img src="image/title.svg" />
+=======
+            ><img src="/public/image/title.svg" />
+>>>>>>> feature/posting
             <h1><a href="index.html" id="MP_item">해 울 해</a></h1></span
           >
         </div>
@@ -96,7 +100,7 @@
                 name="content"
                 placeholder="내용을 입력하세요."
               ></textarea>
-              <input type="file" name="attach" id="btnAttach" multiple /><br />
+              <input type="file" name="attach" id="inputFile" multiple /><br />
             </div>
           </div>
           <div class="pt-btn">
@@ -110,10 +114,12 @@
       function post() {
         var inputTitle = document.getElementById("inputTitle").value;
         var inputText = document.getElementById("inputText").value;
+        var inputFile = document.getElementById("inputFile").value;
 
         alert("게시글 작성완료");
         console.log("제목: " + inputTitle);
         console.log("내용: " + inputText);
+        console.log("파일명: " + inputFile);
       }
     </script>
   </body>
