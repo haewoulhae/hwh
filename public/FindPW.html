@@ -3,22 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HWH_index</title>
+    <title>HWH_FindPW</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="posting.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic&display=swap" rel="stylesheet">
   </head>
   <body>
     <header>
       <div>
         <div class="MP_Title">
           <span
-            ><img src="title.svg" />
+            ><img src="image/title.svg" />
             <h1><a href="index.html" id="MP_item">해 울 해</a></h1></span
           >
         </div>
@@ -26,9 +22,7 @@
           <span
             ><b
               ><a href="Login.html" id="MP_item">로그인</a>
-              <a href="#" id="profile">아이디</a>
-              <a href="CreateAcount.html" id="MP_item">회원가입</a>
-              <a href="#" id="logout">로그아웃</a></b
+              <a href="CreateAcount.html" id="MP_item">회원가입</a></b
             ></span
           >
         </div>
@@ -79,37 +73,18 @@
       </aside>
 
       <section>
-        <h3>게시글 보이는 페이지</h3>
-        <div class="pt-container">
-          <h1>HTML이란...</h1>
-          <br />
-          <img
-            src="/image/바다배경코딩맨1.png"
-            alt="게시물 이미지"
-            width="500"
-            height="500"
-          />
-          <br /><br />
-          <div>
-            html이란<br />h : hello<br />t : tv<br />
-            m : my<br />
-            l : love
-          </div>
-        </div>
-        <!-- <span style="margin-left: 50%"
-          ><b class="bd-title" id="bd-title"></b
-        ></span> -->
-        <div class="pt-btn-con">
-          <button
-            onclick="location.href='posting.html'"
-            class="bd-ct-btn bd-pt-btn"
-          >
-            게시글 작성
-          </button>
+        <div class="findPW-wrapper">
+          <h2>비밀번호 찾기</h2>
+          <form method="post" action="url" id="findPW-form">
+            <input type="text" name="id" placeholder="아이디" />
+            <input type="text" name="question" placeholder="좋아하는 과일은?" />
+            <input type="submit" value="확인" />
+          </form>
         </div>
       </section>
     </div>
-    <footer>made by hwh</footer>
+
+    <footer>해울해 파이팅~ ~~~ ~~~~~~~~</footer>
     <script src="index.js"></script>
   </body>
 </html>

@@ -3,18 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HWH_Login</title>
+    <title>HWH_CA</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <script>
+      function signUp(){
+        var param={};
+        param.user_name=document.getElementsByName("name").values;
+        param.nickname=document.getElementsByName("nickname").values;
+        param.email=document.getElementsByName("email").values;
+        param.webid=document.getElementsByName("id").values;
+        param.webpw=document.getElementsByName("pw").values;
+        param.user_ans=document.getElementsByName("question").values;
+      }
+    </script>
   </head>
   <body>
     <header>
       <div>
         <div class="MP_Title">
           <span
-            ><img src="title.svg" />
+            ><img src="image/title.svg" />
             <h1><a href="index.html" id="MP_item">해 울 해</a></h1></span
           >
         </div>
@@ -73,15 +84,21 @@
       </aside>
 
       <section>
-        <div class="login-wrapper">
-          <h2>로그인</h2>
-          <form method="post" action="url" id="login-form">
-            <input type="text" name="id" placeholder="ID" />
-            <input type="password" name="password" placeholder="Password" />
-            <a href="FindID.html" id="MP_item"><b>아이디 찾기</b></a>
-            &nbsp;
-            <a href="FindPW.html" id="MP_item"><b>비밀번호 찾기</b></a>
-            <input type="submit" value="로그인" />
+        <div class="CA-wrapper">
+          <h2>회원가입</h2>
+          <form method="post" action="/create" id="CA-form">
+            <input type="text" name="name" placeholder="이름" class="create"/>
+            <input type="text" name="id" placeholder="ID" class="create"/>
+            <input type="password" name="password" placeholder="Password" class="create"/>
+            <input type="text" name="nickname" placeholder="닉네임" class="create"/>
+            <input
+              type="mail"
+              name="mail"
+              placeholder="이메일 ( hoseo@naver.com )"
+              class="create"
+            />
+            <input type="text" name="question" placeholder="좋아하는 과일은?"  class="create" />
+            <input type="submit" onclick="create()" class="createBtn" value="회원가입">
           </form>
         </div>
       </section>
