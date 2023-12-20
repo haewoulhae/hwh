@@ -1,5 +1,6 @@
 window.onload = function () {
 <<<<<<< HEAD
+<<<<<<< HEAD
   const name = document.getElementsByName("name")
   const id = document.getElementsByName("id")
   const pw = document.getElementsByName("password")
@@ -9,6 +10,9 @@ window.onload = function () {
 =======
 
 >>>>>>> feature/list
+=======
+
+>>>>>>> feature/mypage
 };
 function test() {
   alert("입력 감지");
@@ -16,6 +20,7 @@ function test() {
   console.log(data.value);
   data.value=""
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 function ad(){
   alert("매너 합시다 ^ㅡ^")
@@ -27,3 +32,5 @@ function create(){
 }
 =======
 >>>>>>> feature/list
+=======
+>>>>>>> feature/mypage

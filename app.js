@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 var cfRouter = require("./src/routes/cf.routes");
 var lanRouter = require("./src/routes/lan.routes");
@@ -12,12 +13,18 @@ var mypageRouter = require("./src/routes/mypage.routes");
 var publicRouter = require("./src/routes/public.routes");
 
 >>>>>>> feature/list
+=======
+>>>>>>> feature/mypage
 var app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 <<<<<<< HEAD
+<<<<<<< HEAD
 // app.use('/', express.static(path.join(__dirname,'public')));
+=======
+//app.use('/', express.static(path.join(__dirname,'public')));
+>>>>>>> feature/mypage
 app.use(cookieParser());
 
 app.get('/', function(req, res) {
@@ -30,6 +37,7 @@ app.use(function (req, res, next) {
 });
 
 app.listen(5500,()=>{  //포트설정
+<<<<<<< HEAD
     console.log('5500번 포트에서 서버 대기중입니다!');
 =======
 app.use('/', express.static(path.join(__dirname,'public')));
@@ -69,6 +77,9 @@ app.use("/public", publicRouter);
 app.listen(5500,()=>{  //포트설정
     console.log('5500 포트에서 서버 대기중입니다!');
 >>>>>>> feature/list
+=======
+    console.log('2300번 포트에서 서버 대기중입니다!');
+>>>>>>> feature/mypage
 });
 
 module.exports = app;
