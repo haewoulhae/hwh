@@ -12,6 +12,31 @@
       href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic&display=swap"
       rel="stylesheet"
     />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      window.onload = function () {
+        const searchParams = new URLSearchParams(location.search);
+        getLanBoard(searchParams.get("lan_id"));
+        // getLanBoard("lan_id = 1");
+      };
+
+      function getLanBoard(lanid) {
+        ajax = $.ajax({
+          url: `/lan?lan_id=${lanid}`,
+          type: "GET",
+          dataType: "JSON",
+          success: function (data) {
+            $("#bd-title").text(data.Data[0].lan_title);
+            $("#bd-content").text(data.Data[0].user_content);
+            $("#bd-pt-t").text(data.Data[0].lan_post_time);
+            $("#bd-ed-t").text(data.Data[0].lan_edit_time);
+          },
+          error: function (error) {
+            console.error("Error fetching data:", error);
+          },
+        });
+      }
+    </script>
   </head>
   <body>
     <header>
@@ -80,7 +105,7 @@
       <section>
         <h3>게시글 보이는 페이지</h3>
         <div class="pt-container">
-          <h1>HTML이란...</h1>
+          <h1 id="bd-title"></h1>
           <br />
           <img
             src="image/바다배경코딩맨1.png"
@@ -89,38 +114,34 @@
             height="500"
           />
           <br /><br />
-          <div>
-            html이란<br />h : hello<br />t : tv<br />
+          <div id="bd-content">
+            <!-- html이란<br />h : hello<br />t : tv<br />
             m : my<br />
-            l : love
+            l : love -->
           </div>
         </div>
         <!-- <span style="margin-left: 50%"
           ><b class="bd-title" id="bd-title"></b
         ></span> -->
-        <div class=" pt-btn-con">
+        <div class="pt-btn-con">
           <fieldset id="commentbox">
             <textarea id="comment" placeholder="댓글을 남겨보세요"></textarea>
-            <button
-              onclick=""
-              class="commentbox_button"
-            >
-              등록
-            </button>
-        </fieldset>
+            <button onclick="" class="commentbox_button">등록</button>
+          </fieldset>
         </div>
-        <hr>
+        <hr />
         <ul>
           <li class="comment_user">임덕현</li>
           <li class="comment_">불멍 폼 미쳤다</li>
           <li class="comment_time">2023.12.20 13:11</li>
-          <hr>
+          <hr />
           <li class="comment_user">user</li>
-          <li class="comment_">아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏzz</li>
+          <li class="comment_">
+            아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏzz
+          </li>
           <li class="comment_time">2023.12.20 13:11</li>
-          <hr>
+          <hr />
         </ul>
-
       </section>
     </div>
     <footer>made by hwh</footer>

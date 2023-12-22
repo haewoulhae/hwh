@@ -1,7 +1,7 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
+var createError = require("http-errors");
+var express = require("express");
+var path = require("path");
+var cookieParser = require("cookie-parser");
 
 var cfRouter = require("./src/routes/cf.routes");
 var lanRouter = require("./src/routes/lan.routes");
@@ -13,27 +13,27 @@ var app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('/', express.static(path.join(__dirname,'public')));
+app.use("/", express.static(path.join(__dirname, "public")));
 app.use(cookieParser());
 
 app.use("/main", (req, res) => {
-    res.sendFile(__dirname + "/public/index.html");
+  res.sendFile(__dirname + "/public/index.html");
 });
 app.use("/cf", cfRouter);
 app.use("/cf", (req, res) => {
-    res.sendFile(__dirname + "/public/board.html");
+  res.sendFile(__dirname + "/public/board.html");
 });
 app.use("/lan", lanRouter);
 app.use("/lan", (req, res) => {
-    res.sendFile(__dirname + "/public/board.html");
+  res.sendFile(__dirname + "/public/board.html");
 });
 app.use("login", loginRouter);
 app.use("/login", (req, res) => {
-    res.sendFile(__dirname + "/public/Login.html");
+  res.sendFile(__dirname + "/public/Login.html");
 });
 app.use("/mypage", mypageRouter);
 app.use("/mypage", (req, res) => {
-    res.sendFile(__dirname + "/public/MyPage.html");
+  res.sendFile(__dirname + "/public/MyPage.html");
 });
 app.use("/public", publicRouter);
 
@@ -47,8 +47,9 @@ app.use("/public", publicRouter);
 //     next(createError(404));
 // n});
 
-app.listen(5500,()=>{  //포트설정
-    console.log('5500 포트에서 서버 대기중입니다!');
+app.listen(5500, () => {
+  //포트설정
+  console.log("5500 포트에서 서버 대기중입니다!");
 });
 
 module.exports = app;
