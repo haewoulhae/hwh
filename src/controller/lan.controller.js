@@ -1,7 +1,8 @@
 const lanService = require("../service/lan.service");
 
 async function postLanBoard(req, res, next) {
-  const postLanBoard_req = req.query;
+  const postLanBoard_req = req.body;
+  console.log(postLanBoard_req);
   const postLanBoard_data = await lanService.postLanBoard(postLanBoard_req);
   return res.status(postLanBoard_data.Status).json(postLanBoard_data);
 }

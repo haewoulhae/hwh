@@ -3,7 +3,7 @@ const db = require("../config/db");
 async function postLanBoard(req) {
   console.log(req.user_id);
   return new Promise((resolve, reject) => {
-    var queryData = `insert into language (user_id, lan_title, lan_content, lan_post_time) 
+    var queryData = `insert into language(user_id, lan_title, lan_content, lan_post_time) 
         values (${req.user_id}, '${req.lan_title}', '${req.lan_content}', '${req.lan_post_time}')`;
     console.log(queryData);
     db.query(queryData, (error, db_data) => {
@@ -35,7 +35,7 @@ async function editLanBoard(req) {
   console.log(req.lan_id);
   return new Promise((resolve, reject) => {
     var queryData = `update language
-        set lan_title='${req.lan_title}', lan_content=${req.lan_content}, lan_theme=${req.lan_theme}, lan_img='${req.lan_img}' 
+        set lan_title='${req.lan_title}', lan_content=${req.lan_content}, lan_img='${req.lan_edit_time}' 
         where lan_id=${req.lan_id} `;
     console.log(queryData);
     db.query(queryData, (error, db_data) => {

@@ -14,15 +14,15 @@
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-      window.onload = function () {
-        const searchParams = new URLSearchParams(location.search);
-        getLanBoard(searchParams.get("lan_id"));
-        // getLanBoard("lan_id = 1");
-      };
+      // window.onload = function () {
+      //   const searchParams = new URLSearchParams(location.search);
+      //   getLanBoard(searchParams.get("lan_id"));
+      //   // getLanBoard("lan_id = 1");
+      // };
 
       function getLanBoard(lanid) {
         ajax = $.ajax({
-          url: `/lan?lan_id=${lanid}`,
+          url: `/lan`,
           type: "GET",
           dataType: "JSON",
           success: function (data) {

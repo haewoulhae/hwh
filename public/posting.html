@@ -12,6 +12,26 @@
       href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic&display=swap"
       rel="stylesheet"
     />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script type="text/javascript">
+        function postLanBoard() {
+          var param = {};
+          param.user_id = 3;
+          param.lan_title = $("#inputTitle").val();
+          param.lan_content = $("#inputText").val();
+          param.lan_post_time = $("").val();
+          var ajax = $.ajax({
+            url: "/posting.html",
+            data: param,
+            type: "POST",
+            dataType: "JSON",
+          });
+          ajax.done(function (data, textStatus, jqXHR) {
+            alert("등록 완료!");
+            location.href = "/board.html";
+        }
+      }
+    </script> -->
   </head>
   <body>
     <header>
@@ -76,32 +96,40 @@
         </div>
         <hr />
       </aside>
-
       <section>
-        <div class="pt">
-          <div class="pt-write">
-            <div class="pt-title">
-              <input
-                id="inputTitle"
-                type="text"
-                name="subject"
-                placeholder="제목을 입력하세요."
-              />
-            </div>
+        <form action="/posting.html" method="POST">
+          <div class="pt">
+            <div class="pt-write">
+              <div class="pt-title">
+                <input
+                  id="inputTitle"
+                  type="text"
+                  name="subject"
+                  placeholder="제목을 입력하세요."
+                />
+              </div>
 
-            <div class="pt-text">
-              <textarea
-                id="inputText"
-                name="content"
-                placeholder="내용을 입력하세요."
-              ></textarea>
-              <input type="file" name="attach" id="inputFile" multiple /><br />
+              <div class="pt-text">
+                <textarea
+                  id="inputText"
+                  name="content"
+                  placeholder="내용을 입력하세요."
+                ></textarea>
+                <input
+                  type="file"
+                  name="attach"
+                  id="inputFile"
+                  multiple
+                /><br />
+              </div>
+            </div>
+            <div class="pt-btn">
+              <button class="pt-btn-" type="button" onclick="postLanBoard()">
+                등록
+              </button>
             </div>
           </div>
-          <div class="pt-btn">
-            <button class="pt-btn-" type="button" onclick="post()">등록</button>
-          </div>
-        </div>
+        </form>
       </section>
     </div>
     <footer>해울해 파이팅~ ~~~ ~~~~~~~~</footer>
