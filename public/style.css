@@ -276,7 +276,7 @@ footer {
 #findID-form > input[type="submit"] {
   color: #fff;
   font-size: 16px;
-  background-color: #cdcdcd;
+  background-color: #383838;
   margin-top: 20px;
 }
 .findPW-wrapper {
@@ -309,7 +309,7 @@ footer {
 #findPW-form > input[type="submit"] {
   color: #fff;
   font-size: 16px;
-  background-color: #999898;
+  background-color: #383838;
   margin-top: 20px;
 }
 #MP_item {

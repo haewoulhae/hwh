@@ -8,6 +8,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script defer>
+      function findId() {
+          var body = {};
+          body.user_name = $("#user_name").val();
+          body.email = $("#email").val();
+          $.ajax({
+            data: body,
+            type: 'GET',
+            url: `/findid/findId`,
+            dataType: 'json'
+          }).done((findId_data) => {
+            console.log("나 바뀐다~~")
+            document.location.href='/findid'
+            alert(findId_data["Data"][0]["webid"]);
+            console.log("데이터"+findId_data["Data"][0]["webid"])
+          }).fail((xhr, status, error) => {
+            console.log("findId html fail");
+          });
+        }
+    </script>
   </head>
   <body>
     <header>
@@ -15,14 +36,14 @@
         <div class="MP_Title">
           <span
             ><img src="image/title.svg" />
-            <h1><a href="index.html" id="MP_item">해 울 해</a></h1></span
+            <h1><a href="/" id="MP_item">해 울 해</a></h1></span
           >
         </div>
         <div class="login">
           <span
             ><b
-              ><a href="Login.html" id="MP_item">로그인</a>
-              <a href="CreateAcount.html" id="MP_item">회원가입</a></b
+              ><a href="/login" id="MP_item">로그인</a>
+              <a href="/create" id="MP_item">회원가입</a></b
             ></span
           >
         </div>
@@ -38,9 +59,7 @@
         <li><a href="List.html" id="MP_item">Project</a></li>
       </ul>
     </nav>
-
     <br />
-
     <div class="MP_container">
       <aside>
         <input
@@ -71,23 +90,18 @@
         </div>
         <hr />
       </aside>
-
       <section>
         <div class="findID-wrapper">
           <h2>아이디 찾기</h2>
-          <form method="post" action="url" id="findID-form">
-            <input type="text" name="id" placeholder="이름" />
-            <input type="mail" name="mail" placeholder="이메일" />
-            <input type="submit" value="확인" />
+          <form method="GET" id="findID-form" action="/findid/findId">
+            <input type="text" name="user_name" placeholder="이름" id="user_name"/>
+            <input type="mail" name="email" placeholder="이메일" id="email"/>
+            <input type="submit" value="확인" onclick="findId()" />
           </form>
         </div>
       </section>
     </div>
-
     <footer>해울해 파이팅~ ~~~ ~~~~~~~~</footer>
-<<<<<<< HEAD
     <script src="index.js"></script>
-=======
->>>>>>> feature/posting
   </body>
 </html>

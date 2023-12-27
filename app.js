@@ -26,9 +26,21 @@ app.use("/lan", lanRouter);
 app.use("/lan", (req, res) => {
     res.sendFile(__dirname + "/public/board.html");
 });
-app.use("login", loginRouter);
+app.use("/login", loginRouter);
 app.use("/login", (req, res) => {
     res.sendFile(__dirname + "/public/Login.html");
+});
+app.use("/create", loginRouter);
+app.use("/create", (req, res) => {
+    res.sendFile(__dirname + "/public/CreateAcount.html");
+});
+app.use("/findid", loginRouter);
+app.use("/findid", (req, res) => {
+    res.sendFile(__dirname + "/public/FindID.html");
+});
+app.use("/findpw", loginRouter);
+app.use("/findpw", (req, res) => {
+    res.sendFile(__dirname + "/public/FindPW.html");
 });
 app.use("/mypage", mypageRouter);
 app.use("/mypage", (req, res) => {
@@ -36,9 +48,7 @@ app.use("/mypage", (req, res) => {
 });
 app.use("/public", publicRouter);
 
-app.get("/create", (req, res) => {
-    return res.sendFile(__dirname + "/public/CreateAcount.html");
-  })
+
 // 포트 열리는지 테스트 !
 // app.get('/', function(req, res) {
 //     res.send('안뇽');
