@@ -72,7 +72,7 @@
         function display_hotMember(hotMember_data) {
           for(var i=0; i<5; i++) {
             var id = `hotmember${i+1}`
-            document.getElementById(id).textContent = hotMember_data["Data"][i]["nikname"]
+            document.getElementById(id).textContent = hotMember_data["Data"][i]["nickname"]
           }
         }
       });
@@ -83,7 +83,7 @@
       <div>
         <div class="MP_Title">
           <span><img src="image/title.svg" />
-            <h1><a href="/" id="MP_item">해 울 해</a></h1></span>
+            <h1><a href="/main" id="MP_item">해 울 해</a></h1></span>
         </div>
         <div class="login">
           <span><b><a href="/login" id="MP_item">로그인</a>

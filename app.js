@@ -18,7 +18,7 @@ app.use(cookieParser());
 
 app.use("/main", publicRouter);
 app.use("/main", (req, res) => {
-    res.sendFile(__dirname + "src/public/index.html");
+    res.sendFile(__dirname + "/public/index.html");
 });
 app.use("/cf", cfRouter);
 app.get("/cf", (req, res) => {
@@ -26,7 +26,7 @@ app.get("/cf", (req, res) => {
 });
 app.use("/lan", lanRouter);
 app.get("/lan", (req, res) => {
-  res.sendFile(__dirname + "/public/posting.html");
+  res.sendFile(__dirname + "/public/board.html");
 });
 app.use("/list", publicRouter);
 app.use("/list", (req, res) => {

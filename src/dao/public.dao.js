@@ -3,7 +3,7 @@ const logger = require("../config/logger");
 
 async function getComflower(req) {
     return new Promise((resolve, reject) => {
-        var queryData = `SELECT cf_id, cf_title as title FROM comflower WHERE cf_title LIKE '%apple%'`;
+        var queryData = `SELECT cf_id, cf_title as title FROM comflower WHERE cf_title LIKE '%${req.search}%'`;
         db.query(queryData, (error, db_data) => {
             if(error) {
                 console.log("DB error [comflower]" + "\n \t" + queryData + "\n \t" + error);
@@ -15,7 +15,7 @@ async function getComflower(req) {
 }
 async function getLanguage(req) {
     return new Promise((resolve, reject) => {
-        var queryData = `SELECT lan_id, lan_title as title FROM language WHERE lan_title LIKE '%apple%'`;
+        var queryData = `SELECT lan_id, lan_title as title FROM language WHERE lan_title LIKE '%${req.search}%'`;
         db.query(queryData, (error, db_data) => {
             if(error) {
                 console.log("DB error [language]" + "\n \t" + queryData + "\n \t" + error);
@@ -64,7 +64,7 @@ async function hotList_lan() {
 }
 async function hotMember() {
     return new Promise((resolve, reject) => {
-        var queryData = `SELECT user_id, nikname, counting FROM user WHERE counting!=0`;
+        var queryData = `SELECT user_id, nickname, counting FROM user WHERE counting!=0`;
         db.query(queryData, (error, db_data) => {
             if(error) {
                 logger.error(

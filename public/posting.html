@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet"/>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
       function ctgToNum(str) {
@@ -27,6 +27,48 @@
             return -1; // 변환할 수 없는 경우 -1 또는 다른 기본값을 반환합니다.
         }
       }
+      $(document).ready(() => {
+        getHotList();
+        getHotMember();
+        function getHotList() {
+          $.ajax({
+            type: 'GET',
+            url: `/main/hotlist`,
+            dataType: 'json'
+          }).done((hotList_data) => {
+            console.log('html in hotlist');
+            console.log(hotList_data);
+            display_hotList(hotList_data);
+          }).fail((xhr, status, error) => {
+            console.log("html hotList fail");
+          });
+        }
+        function getHotMember() {
+          $.ajax({
+            type: 'GET',
+            url: `/main/hotmember`,
+            dataType: 'json'
+          }).done((hotMember_data) => {
+            console.log('html in hotmember');
+            console.log(hotMember_data);
+            display_hotMember(hotMember_data);
+          }).fail((xhr, status, error) => {
+            console.log("html hotMember fail");
+          });
+        }
+        function display_hotList(hotList_data) {
+          for(var i=0; i<5; i++){
+              var id = `hotlist${i+1}`
+              document.getElementById(id).textContent = hotList_data["Data"][i]["title"]
+            }
+        }
+        function display_hotMember(hotMember_data) {
+          for(var i=0; i<5; i++) {
+            var id = `hotmember${i+1}`
+            document.getElementById(id).textContent = hotMember_data["Data"][i]["nickname"]
+          }
+        }
+      });
     </script>
     <script type="text/javascript">
       var incCmtId = 15;
@@ -68,7 +110,7 @@
         <div class="MP_Title">
           <span
             ><img src="image/title.svg" />
-            <h1><a href="/" id="MP_item">해 울 해</a></h1></span
+            <h1><a href="/main" id="MP_item">해 울 해</a></h1></span
           >
         </div>
         <div class="login">
@@ -82,11 +124,11 @@
     </header>
     <nav>
       <ul>
-        <li><a href="List.html" id="MP_item">HTML</a></li>
-        <li><a href="List.html" id="MP_item">CSS</a></li>
-        <li><a href="List.html" id="MP_item">JavaScript</a></li>
-        <li><a href="List.html" id="MP_item">Seminar</a></li>
-        <li><a href="List.html" id="MP_item">Project</a></li>
+        <li><a href="/lan" id="MP_item">HTML</a></li>
+        <li><a href="/lan" id="MP_item">CSS</a></li>
+        <li><a href="/lan" id="MP_item">JavaScript</a></li>
+        <li><a href="/cf" id="MP_item">Seminar</a></li>
+        <li><a href="/cf" id="MP_item">Project</a></li>
       </ul>
     </nav>
 
@@ -105,19 +147,23 @@
         <hr />
         <div id="side_box">
           <h3>인기 글</h3>
-          <ul id="side_menu">
-            <li>인기1</li>
-            <li>인기2</li>
-            <li>인기3</li>
+          <ul id="side_menu" style="list-style: none;">
+            <li id="hotlist1">인기1</li>
+            <li id="hotlist2">인기2</li>
+            <li id="hotlist3">인기3</li>
+            <li id="hotlist4">인기4</li>
+            <li id="hotlist5">인기5</li>
           </ul>
         </div>
         <hr />
         <div id="side_box">
           <h3>인기 멤버</h3>
-          <ul id="side_menu">
-            <li>인기1</li>
-            <li>인기2</li>
-            <li>인기3</li>
+          <ul id="side_menu" style="list-style: none;">
+            <li id="hotmember1">인기1</li>
+            <li id="hotmember2">인기2</li>
+            <li id="hotmember3">인기3</li>
+            <li id="hotmember4">인기3</li>
+            <li id="hotmember5">인기3</li>
           </ul>
         </div>
         <hr />
