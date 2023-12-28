@@ -77,7 +77,7 @@ async function hotMember() {
 }
 
 module.exports = {
-    getBoard
+    getBoard,
     hotList,
     hotMember
 }

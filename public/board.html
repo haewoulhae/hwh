@@ -102,7 +102,7 @@
           <fieldset id="commentbox">
             <textarea id="comment" placeholder="댓글을 남겨보세요"></textarea>
             <button
-              onclick=""
+              onclick="addComment()"
               class="commentbox_button"
             >
               등록
@@ -110,20 +110,271 @@
         </fieldset>
         </div>
         <hr>
-        <ul>
+        <ul id="addcomment">
           <li class="comment_user">임덕현</li>
           <li class="comment_">불멍 폼 미쳤다</li>
-          <li class="comment_time">2023.12.20 13:11</li>
+          <li class="comment_time">2023.12.20 13:11
+            <input type="button" class="comment_button" value="삭제">
+            <input type="button" class="comment_button" value="수정">
+          </li>
+
           <hr>
           <li class="comment_user">user</li>
           <li class="comment_">아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏzz</li>
           <li class="comment_time">2023.12.20 13:11</li>
+          <input type="button" class="comment_button" value="삭제">
+          <input type="button" class="comment_button" value="수정">
           <hr>
         </ul>
 
       </section>
     </div>
     <footer>made by hwh</footer>
-    <script src="index.js"></script>
+    <!-- <script src="index.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      var incCmtId = 1;
+      var incCmtgrp = 1;
+      function addComment(){
+        // // alert("댓글 작성 완료!")
+        // let comment = document.getElementById("comment");
+        // if(comment.value != ""){
+        //   // console.log('comment='+comment);
+        //   let body = document.getElementById("addcomment").innerHTML;
+        //   // console.log('body='+body);
+        //   let cmt = 
+        //   '<li class="comment_user">' + user_ID + '</li>' + 
+        //   '<li class="comment_">' + comment.value + '</li>' +
+        //   '<li class="comment_time">' + time() + '</li>' + '<hr>';
+        //   body += cmt;
+        //   // console.log('cmt='+cmt);
+
+        //   comment.value=""
+        //   document.getElementById("addcomment").innerHTML = body
+        // }
+        // else{
+        //   alert("댓글을 작성하려면 내용을 입력해주세요!")
+        // }
+
+        
+      // function time(){
+      //   var today = new Date();
+
+      //   var year = today.getFullYear();
+      //   var month = ('0' + (today.getMonth() + 1)).slice(-2);
+      //   var day = ('0' + today.getDate()).slice(-2);
+
+      //   var hours = ('0' + today.getHours()).slice(-2); 
+      //   var minutes = ('0' + today.getMinutes()).slice(-2);
+      //   var seconds = ('0' + today.getSeconds()).slice(-2); 
+
+      //   var TimeString = 
+      //   year + '.' + month  + '.' + day + ' ' + 
+      //   hours + ':' + minutes  + ':' + seconds;
+      //   return TimeString;
+      // }
+        // comment_id, user_id, cf_id, content, comment_datetime, comment_like, comment_class, comment_group, comment_level
+
+        var time = new Date();
+        time.setHours(time.getHours() + 9);
+
+        var param = {};
+        param.comment_id = incCmtId;
+        param.user_id = 1;
+        param.cf_id = 1;
+        param.content = $("#comment").val();
+        param.comment_datetime = time.toISOString().slice(0, 19).replace('T', ' ');
+        param.comment_like = 0;
+        param.comment_class = 0;
+        param.comment_group = incCmtgrp;
+        param.comment_level = 0;
+
+        $.ajax({
+          type : "POST",
+          url : "http://localhost:5500/cf/postCmt",
+          data : JSON.stringify(param),
+          headers : {"content-type":"application/json; charset=utf-8"},
+          dataType : "json",
+        }).done((res) => {
+          location.reload();
+
+        }).fail((err)=>{
+            console.log(err);
+        });
+        // incCmtId = incCmtId + 1;
+        // console.log(incCmtId);
+      }
+
+
+      $(document).ready(() => {
+        
+        getComments();
+    
+        
+        function getComments() {
+          $.ajax({
+            type: 'GET',
+            url: 'http://localhost:5500/cf/getCmt',
+            dataType: 'json',
+          }).done((comments) => {
+            console.log('댓글 로딩')
+            incCmtId = comments.MaxCommentId + 1;
+            incCmtgrp = comments.MaxCommentGroup + 1;
+            console.log(comments.MaxCommentId)
+            console.log(comments.MaxCommentGroup)
+            displayComments(comments);
+          }).fail((xhr, status, error) => {
+            console.error('댓글 가져오기 실패:', xhr, status, error);
+          });
+        }
+    
+        
+      
+        function displayComments(commentsData) {
+          console.log(commentsData)
+          const $commentList = $('#addcomment');
+          $commentList.empty();
+          const $re_commentList = $('#addcomment');
+          $re_commentList.empty();
+
+          if (!Array.isArray(commentsData.Data)) {
+            commentsData.Data = [commentsData.Data];
+          }
+
+          commentsData.Data.forEach((comment) => {
+            const $liUser = $('<li>').addClass('comment_user').text(comment.nickname);
+            const $liContent = $('<li>').addClass('comment_').text(comment.content);
+            const $liTime = $('<span>').addClass('comment_time').text(comment.comment_datetime);
+
+            const $editButton = $('<button>').addClass('comment_button').text('수정').on('click', function () {
+              console.log('수정 버튼 클릭 - comment_id:', comment.comment_id);
+              $('#editForm' + comment.comment_id).show();
+              $editInput.select();
+              $liTime.hide();
+              $re_commentButton.hide();
+              $editButton.hide();
+
+            });
+            const $editInput = $('<input>').attr({ type: 'text', id: 'editComment' + comment.comment_id, value: comment.content });
+            const $editForm = $('<form>').attr('id', 'editForm' + comment.comment_id).css('display', 'none');
+//댓글 수정 아이디 바꾸기
+            const $re_commentInput = $('<input>').attr({ type: 'text', id: 're_comment', placeholder: '답글을 남겨주세요' });
+            const $re_commentForm = $('<form>').attr('id', 're_commentForm' + comment.comment_id).css('display', 'none');
+
+            const $saveButton = $('<button>').addClass('addcomment_button').text('수정').on('click', function () {
+                var time = new Date();
+                time.setHours(time.getHours() + 9);
+
+                var putparam = {};
+                putparam.comment_id = comment.comment_id;
+                putparam.content = $editInput.val();
+                putparam.comment_datetime = time.toISOString().slice(0, 19).replace('T', ' ');
+
+                $.ajax({
+                  type: 'PUT',
+                  url: 'http://localhost:5500/cf/putCmt',
+                  data : JSON.stringify(putparam),
+                  headers : {"content-type":"application/json; charset=utf-8"},
+                  dataType: 'json',
+                }).done((comments) => {
+                }).fail((xhr, status, error) => {
+                  console.error('댓글 수정 실패:', xhr, status, error);
+                });
+              }
+            );
+            const $deleteButton = $('<button>').addClass('comment_button').text('삭제').on('click', function () {
+              console.log('삭제 버튼 클릭 - comment_id:', comment.comment_id);
+
+              var delparam = {};
+              delparam.comment_id = comment.comment_id;
+
+              $.ajax({
+                  type: 'DELETE',
+                  url: 'http://localhost:5500/cf/deleteCmt',
+                  data : JSON.stringify(delparam),
+                  headers : {"content-type":"application/json; charset=utf-8"},
+                  dataType: 'json',
+                }).done((comments) => {
+                  location.reload();
+                }).fail((xhr, status, error) => {
+                  console.error('댓글 삭제 실패:', xhr, status, error);
+                });
+            });
+
+            const $re_commentButton = $('<button>').addClass('comment_button').text('답글').on('click', function () {
+              console.log('답글 달기 버튼 클릭 - comment_id:', comment.comment_id);
+              $('#re_commentForm' + comment.comment_id).show();
+              $re_commentInput.select();
+              $liTime.hide();
+              $editButton.hide();
+              $re_commentButton.hide();
+            });
+            const $Add_re_commentButton = $('<button>').addClass('addcomment_button').text('답글').on('click', function () {
+              var time = new Date();
+              time.setHours(time.getHours() + 9);
+
+              var re_comment_param = {};
+              re_comment_param.comment_id = incCmtId;
+              re_comment_param.user_id = 1;
+              re_comment_param.cf_id = 1;
+              // re_comment_param.content = $("#re_comment").val();
+              re_comment_param.content = $re_commentInput.val();
+              re_comment_param.comment_datetime = time.toISOString().slice(0, 19).replace('T', ' ');
+              re_comment_param.comment_like = 0;
+              re_comment_param.comment_class = 1;
+              re_comment_param.comment_group = comment.comment_group;
+              re_comment_param.comment_level = 0;
+
+              $.ajax({
+                type : "POST",
+                url : "http://localhost:5500/cf/postCmt",
+                data : JSON.stringify(re_comment_param),
+                headers : {"content-type":"application/json; charset=utf-8"},
+                dataType : "json",
+              }).done((res) => {
+                location.reload();
+
+              }).fail((err)=>{
+                  console.log(err);
+              });
+
+              //post로 댓글 아래에 공간 만들어서 댓글 새로 다는 느낌
+              //근데 class로 부모, 자식 구분. 자식이면 들여쓰기
+              //정렬은 그룹>클래스 순으로 변경
+            });
+
+            const $hr = $('<hr>');
+            const $br = $('<br>');
+            const $enter = $('<span>↳</span>').css({'float': 'left','color': '#b1b1b1'})
+
+            $editForm.append($editInput, $saveButton);
+            $re_commentForm.append($re_commentInput, $Add_re_commentButton);
+
+
+
+            const $liRow = $('<li>').addClass('comment_row');
+            $liRow.append();
+
+            if (comment.comment_class == 1){
+              $liUser.css('padding', '2px 2px 2px 30px')
+              $liContent.css('padding', '2px 2px 2px 30px')
+              $liTime.css('padding', '0px 2px 0px 30px')
+              $editForm.css('padding', '0px 0px 0px 30px')
+
+              $re_commentList.append($liUser, $enter, $liContent, $liTime, $deleteButton, $editButton, $editForm, $br, $hr);
+            }
+            else{
+              $liUser.css('padding', '2px 2px 2px 10px')
+              $commentList.append($liUser, $liContent, $liTime, $deleteButton, $editButton, $re_commentButton, $editForm, $br, $re_commentForm, $br, $hr);
+            }
+            // $commentList.append($liUser, $liContent, $liTime, $deleteButton, $editButton, $re_commentButton, $editForm, $br, $re_commentForm, $br, $hr);
+          });
+        }
+
+
+    
+      
+      });
+    </script>
   </body>
 </html>
