@@ -329,6 +329,9 @@ h1 a {
 #side_menu {
   margin-left: 10%;
 }
+#side_menu > li {
+  margin-top: 7%;
+}
 #side_box {
   height: 40%;
 }
@@ -355,10 +358,11 @@ h1 a {
 }
 
 .mypost_time {
+  position: absolute;
+  top: 25%;
   text-align: right;
-  width:120px;
   color:#b1b1b1;
-  margin-left: 1%;
+  margin-left: 85%;
 }
 section table {
   width:100%;
@@ -377,7 +381,11 @@ section span{
   float: right;
 }
 .mypost_cf {
+  text-align: right;
+  margin-left: 75%;
   color:#ecd417;
+  position: absolute;
+  top: 25%;
 }
 .mypost_lan {
   color:#ae5f2e;
@@ -440,4 +448,15 @@ section hr{
 section li{
   width: 90%;
   padding: 2px 2px 2px 10px;
+}
+#post_box{
+  position: relative;
+  height: 50px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 100px 500px 400px;
+}
+.mypost_title{
+  position: absolute;
+  top: 25%;
 }

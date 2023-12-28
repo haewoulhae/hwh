@@ -40,7 +40,7 @@ header div {
     align-items: center; /* 제목을 가운데 정렬 */
     position: relative;
 }
-header .MP_user-info {
+header .user-info {
     position: absolute; /* absolute - 부모 기준으로 위치 지정 */
     top: 10px;
     right: 60px;

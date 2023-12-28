@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var logger = require('morgan');
 
 var cfRouter = require("./src/routes/cf.routes");
 var lanRouter = require("./src/routes/lan.routes");
