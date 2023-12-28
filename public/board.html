@@ -78,27 +78,17 @@
       </aside>
 
       <section>
-        <h3>게시글 보이는 페이지</h3>
-        <div class="pt-container">
-          <h1>HTML이란...</h1>
+        <div class="pt-container" id="addpost">
+          <h1 id="post-title"></h1>
           <br />
-          <img
-            src="image/바다배경코딩맨1.png"
-            alt="게시물 이미지"
-            width="500"
-            height="500"
-          />
+          <iframe id="post-file" width="500" height="800"></iframe>
           <br /><br />
-          <div>
-            html이란<br />h : hello<br />t : tv<br />
-            m : my<br />
-            l : love
-          </div>
+          <div id="post-content"></div>
         </div>
         <!-- <span style="margin-left: 50%"
           ><b class="bd-title" id="bd-title"></b
         ></span> -->
-        <div class=" pt-btn-con">
+        <div class="pt-btn-con">
           <fieldset id="commentbox">
             <textarea id="comment" placeholder="댓글을 남겨보세요"></textarea>
             <button
@@ -107,7 +97,7 @@
             >
               등록
             </button>
-        </fieldset>
+          </fieldset>
         </div>
         <hr>
         <ul id="addcomment">
@@ -127,6 +117,16 @@
           <hr>
         </ul>
 
+          <hr />
+          <li class="comment_user">user</li>
+          <li class="comment_">
+            아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏzz
+          </li>
+          <li class="comment_time">2023.12.20 13:11</li>
+          <input type="button" class="comment_button" value="삭제" />
+          <input type="button" class="comment_button" value="수정" />
+          <hr />
+        </ul>
       </section>
     </div>
     <footer>made by hwh</footer>
@@ -136,44 +136,7 @@
       var incCmtId = 1;
       var incCmtgrp = 1;
       function addComment(){
-        // // alert("댓글 작성 완료!")
-        // let comment = document.getElementById("comment");
-        // if(comment.value != ""){
-        //   // console.log('comment='+comment);
-        //   let body = document.getElementById("addcomment").innerHTML;
-        //   // console.log('body='+body);
-        //   let cmt = 
-        //   '<li class="comment_user">' + user_ID + '</li>' + 
-        //   '<li class="comment_">' + comment.value + '</li>' +
-        //   '<li class="comment_time">' + time() + '</li>' + '<hr>';
-        //   body += cmt;
-        //   // console.log('cmt='+cmt);
-
-        //   comment.value=""
-        //   document.getElementById("addcomment").innerHTML = body
-        // }
-        // else{
-        //   alert("댓글을 작성하려면 내용을 입력해주세요!")
-        // }
-
         
-      // function time(){
-      //   var today = new Date();
-
-      //   var year = today.getFullYear();
-      //   var month = ('0' + (today.getMonth() + 1)).slice(-2);
-      //   var day = ('0' + today.getDate()).slice(-2);
-
-      //   var hours = ('0' + today.getHours()).slice(-2); 
-      //   var minutes = ('0' + today.getMinutes()).slice(-2);
-      //   var seconds = ('0' + today.getSeconds()).slice(-2); 
-
-      //   var TimeString = 
-      //   year + '.' + month  + '.' + day + ' ' + 
-      //   hours + ':' + minutes  + ':' + seconds;
-      //   return TimeString;
-      // }
-        // comment_id, user_id, cf_id, content, comment_datetime, comment_like, comment_class, comment_group, comment_level
 
         var time = new Date();
         time.setHours(time.getHours() + 9);
@@ -183,59 +146,122 @@
         param.user_id = 1;
         param.cf_id = 1;
         param.content = $("#comment").val();
-        param.comment_datetime = time.toISOString().slice(0, 19).replace('T', ' ');
+        param.comment_datetime = time
+          .toISOString()
+          .slice(0, 19)
+          .replace("T", " ");
         param.comment_like = 0;
         param.comment_class = 0;
-        param.comment_group = incCmtgrp;
+        param.comment_group = 0;
         param.comment_level = 0;
 
         $.ajax({
-          type : "POST",
-          url : "http://localhost:5500/cf/postCmt",
-          data : JSON.stringify(param),
-          headers : {"content-type":"application/json; charset=utf-8"},
-          dataType : "json",
-        }).done((res) => {
-          location.reload();
-
-        }).fail((err)=>{
+          type: "POST",
+          url: "http://localhost:5500/cf/postCmt",
+          data: JSON.stringify(param),
+          headers: { "content-type": "application/json; charset=utf-8" },
+          dataType: "json",
+        })
+          .done((res) => {
+            location.reload();
+          })
+          .fail((err) => {
             console.log(err);
-        });
+          });
         // incCmtId = incCmtId + 1;
         // console.log(incCmtId);
       }
-
-
+      // 게시글
       $(document).ready(() => {
-        
+        getposts();
+        function getposts() {
+          var body = { lan_id: 25 };
+          $.ajax({
+            type: "GET",
+            url: "http://localhost:5500/lan/getLanBoard",
+            data: body,
+            dataType: "json",
+          })
+            .done((postdata) => {
+              console.log("게시글 로딩");
+              displayPost(postdata);
+            })
+            .fail((xhr, status, error) => {
+              console.error("게시글 가져오기 실패:", xhr, status, error);
+            });
+
+          function displayPost(postData) {
+            console.log(postData);
+
+            const $postList = $("#addpost");
+            $postList.empty();
+
+            if (
+              typeof postData === "object" &&
+              postData !== null &&
+              Array.isArray(postData.Data)
+            ) {
+              postData.Data.forEach((post) => {
+                const $lipUser = $("<li>")
+                  .attr("id", "post-userid")
+                  .text(post.user_id);
+                const $lipTitle = $("<li>")
+                  .attr("id", "post-title")
+                  .text(post.lan_title);
+                const $lipFile = $("<li>")
+                  .attr("id", "post-file")
+                  .text(post.lan_file);
+                const $lipContent = $("<li>")
+                  .attr("id", "post-content")
+                  .text(post.lan_content);
+                const $lipTime = $("<li>")
+                  .attr("id", "post-time")
+                  .text(post.lan_post_time);
+                const $lipEditTime = $("<li>")
+                  .attr("id", "edit-time")
+                  .text(post.lan_edit_time);
+
+                $postList.append(
+                  $lipUser,
+                  $lipTitle,
+                  $lipFile,
+                  $lipContent,
+                  $lipTime,
+                  $lipEditTime
+                );
+              });
+            } else {
+              console.error("올바르지 않은 데이터 형식입니다.");
+            }
+          }
+        }
+      });
+      // 댓글
+      $(document).ready(() => {
         getComments();
-    
-        
+
         function getComments() {
           $.ajax({
-            type: 'GET',
-            url: 'http://localhost:5500/cf/getCmt',
-            dataType: 'json',
-          }).done((comments) => {
-            console.log('댓글 로딩')
-            incCmtId = comments.MaxCommentId + 1;
-            incCmtgrp = comments.MaxCommentGroup + 1;
-            console.log(comments.MaxCommentId)
-            console.log(comments.MaxCommentGroup)
-            displayComments(comments);
-          }).fail((xhr, status, error) => {
-            console.error('댓글 가져오기 실패:', xhr, status, error);
-          });
+            type: "GET",
+            url: "http://localhost:5500/cf/getCmt",
+            dataType: "json",
+          })
+            .done((comments) => {
+              console.log("댓글 로딩");
+              incCmtId = comments.MaxCommentId + 1;
+              console.log(incCmtId);
+              console.log(comments.MaxCommentId);
+              displayComments(comments);
+            })
+            .fail((xhr, status, error) => {
+              console.error("댓글 가져오기 실패:", xhr, status, error);
+            });
         }
-    
-        
-      
+
         function displayComments(commentsData) {
-          console.log(commentsData)
-          const $commentList = $('#addcomment');
+          console.log(commentsData);
+          const $commentList = $("#addcomment");
           $commentList.empty();
-          const $re_commentList = $('#addcomment');
-          $re_commentList.empty();
 
           if (!Array.isArray(commentsData.Data)) {
             commentsData.Data = [commentsData.Data];

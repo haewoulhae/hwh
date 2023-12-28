@@ -1,122 +1,142 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HWH_BoardList</title>
-    <link rel="stylesheet" href="List.css"/>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic&display=swap" rel="stylesheet">
-</head>
-<body>
-<header>
-    <div>
+    <link rel="stylesheet" href="List.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="posting.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div>
         <div class="MP_Title">
-            <span>
-                <img src="image/title.svg" /><h1><a href="index.html" id="MP_item">해 울 해</a></h1></span>
+          <span>
+            <img src="image/title.svg" />
+            <h1><a href="index.html" id="MP_item">해 울 해</a></h1></span
+          >
         </div>
         <div class="login">
-            <span><b><a href="Login.html" id="MP_item">로그인</a>
-                <a href="#" id="profile">아이디</a>
-                <a href="CreateAcount.html" id="MP_item">회원가입</a>
-                <a href="#" id="logout">로그아웃</a></b></span>
+          <span
+            ><b
+              ><a href="Login.html" id="MP_item">로그인</a>
+              <a href="#" id="profile">아이디</a>
+              <a href="CreateAcount.html" id="MP_item">회원가입</a>
+              <a href="#" id="logout">로그아웃</a></b
+            ></span
+          >
         </div>
-    </div>
-</header>
-    
-<nav>
-    <ul>
+      </div>
+    </header>
+
+    <nav>
+      <ul>
         <li><a href="List.html" id="MP_item">HTML</a></li>
         <li><a href="List.html" id="MP_item">CSS</a></li>
         <li><a href="List.html" id="MP_item">JavaScript</a></li>
         <li><a href="List.html" id="MP_item">Seminar</a></li>
         <li><a href="List.html" id="MP_item">Project</a></li>
-    </ul>
-</nav>
+      </ul>
+    </nav>
 
-<br>
+    <br />
 
-<div class="MP_container">
-    <aside>
+    <div class="MP_container">
+      <aside>
         <input
-            type="text"
-            method="POST"
-            id="search"
-            placeholder="검색"
-            size="20"
-            onkeyup="if(window.event.keyCode==13){test()}"
+          type="text"
+          method="POST"
+          id="search"
+          placeholder="검색"
+          size="20"
+          onkeyup="if(window.event.keyCode==13){test()}"
         />
         <hr />
         <div id="side_box">
-            <h3>인기 글</h3>
-            <ul id="side_menu">
+          <h3>인기 글</h3>
+          <ul id="side_menu">
             <li>인기1</li>
             <li>인기2</li>
             <li>인기3</li>
-            </ul>
+          </ul>
         </div>
         <hr />
         <div id="side_box">
-            <h3>인기 멤버</h3>
-            <ul id="side_menu">
+          <h3>인기 멤버</h3>
+          <ul id="side_menu">
             <li>인기1</li>
             <li>인기2</li>
             <li>인기3</li>
-            </ul>
+          </ul>
         </div>
         <hr />
-        </aside>
+      </aside>
 
-    <section>
+      <section>
         <article class="list_box">
-            <div class="LI_container">
-                <div class="LI_top">
-                    <div class="box b1">
-                        <div class="bb1"> </div>
-                        <span id="listtitle1">제목1</span>                  
-                    </div>
-                    <div class="box b2">
-                        <div class="bb2"> </div>
-                        <span id="listtitle2">제목1</span>                  
-                    </div>
-                    <div class="box b3">
-                        <div class="bb3">냠냠냠냠냠냠냠</div>
-                        <span id="listtitle3">제목1</span>                  
-                    </div>
-                    <div class="box b4">
-                        <div class="bb4">냠냠냠냠냠냠냠</div>
-                        <span id="listtitle4">기이이이이이일게에에에에에에</span>                  
-                    </div>
-                </div>
-                <br>
-                <div class="LI_bottom">
-                    <div class="box b1">
-                        <div class="bb1">냠냠냠냠냠냠냠</div>
-                        <span id="listtitle5">제목1</span>                  
-                    </div>
-                    <div class="box b2">
-                        <div class="bb2">냠냠냠냠냠냠냠</div>
-                        <span id="listtitle6">제목1</span>                  
-                    </div>
-                    <div class="box b3">
-                        <div class="bb3">냠냠냠냠냠냠냠</div>
-                        <span id="listtitle7">제목1</span>                  
-                    </div>
-                    <div class="box b4">
-                        <div class="bb4">냠냠냠냠냠냠냠</div>
-                        <span id="listtitle8">제목1</span>                  
-                    </div>
-                </div>
+          <div class="LI_container">
+            <div class="LI_top">
+              <div class="box b1">
+                <div class="bb1"></div>
+                <span><a href="board.html">해울해</a></span>
+              </div>
+              <div class="box b2">
+                <div class="bb2"></div>
+                <span><a href="board.html">파이팅!</a></span>
+              </div>
+              <div class="box b3">
+                <div class="bb3">냠냠냠냠냠냠냠</div>
+                <span
+                  ><a href="board.html"
+                    >승혁이가 주먹으로 나를 가위바위보로 이겼다</a
+                  ></span
+                >
+              </div>
+              <div class="box b4">
+                <div class="bb4">냠냠냠냠냠냠냠</div>
+                <span><a href="board.html">제목1</a></span>
+              </div>
             </div>
+            <br />
+            <div class="LI_bottom">
+              <div class="box b1">
+                <div class="bb1">냠냠냠냠냠냠냠</div>
+                <span>제목1</span>
+              </div>
+              <div class="box b2">
+                <div class="bb2">냠냠냠냠냠냠냠</div>
+                <span>제목1</span>
+              </div>
+              <div class="box b3">
+                <div class="bb3">냠냠냠냠냠냠냠</div>
+                <span>제목1</span>
+              </div>
+              <div class="box b4">
+                <div class="bb4">냠냠냠냠냠냠냠</div>
+                <span>제목1</span>
+              </div>
+            </div>
+          </div>
         </article>
-    </section>
-</div>
+        <div class="pt-btn-con">
+          <button
+            onclick="location.href='posting.html'"
+            class="bd-ct-btn bd-pt-btn"
+          >
+            게시글 작성
+          </button>
+        </div>
+      </section>
+    </div>
 
-<footer>
-    해울해 파이팅~ ~~~ ~~~~~~~~
-</footer>
-<script src="index.js"></script>
-</body>
+    <footer>해울해 파이팅~ ~~~ ~~~~~~~~</footer>
+    <script src="index.js"></script>
+  </body>
 </html>

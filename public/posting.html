@@ -12,6 +12,55 @@
       href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic&display=swap"
       rel="stylesheet"
     />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      function ctgToNum(str) {
+        switch (str.toLowerCase()) {
+          case "html":
+            return 1;
+          case "css":
+            return 2;
+          case "javascript":
+            return 3;
+          // 다른 경우에 대한 처리를 추가할 수 있습니다.
+          default:
+            return -1; // 변환할 수 없는 경우 -1 또는 다른 기본값을 반환합니다.
+        }
+      }
+    </script>
+    <script type="text/javascript">
+      var incCmtId = 15;
+      function addpost(user_ID) {
+        var time = new Date();
+
+        var param = {};
+        param.user_id = 1;
+        param.lan_category = $("#inputCtg").val();
+        param.lan_title = $("#inputTitle").val();
+        param.lan_content = $("#inputText").val();
+        param.lan_file = $("#inputFile").val();
+        param.lan_post_time = time.toISOString().slice(0, 19).replace("T", " ");
+
+        var inputValue = $("#inputCtg").val();
+        var convertedValue = ctgToNum(inputValue);
+        param.lan_category = convertedValue;
+
+        $.ajax({
+          type: "POST",
+          url: "http://localhost:5500/lan/postLanBoard",
+          data: JSON.stringify(param),
+          headers: { "content-type": "application/json; charset=utf-8" },
+          dataType: "json",
+        })
+          .done((res) => {
+            alert("S2등록 완료2S");
+            location.href = "/List.html";
+          })
+          .fail((err) => {
+            console.log(err);
+          });
+      }
+    </script>
   </head>
   <body>
     <header>
@@ -31,7 +80,6 @@
         </div>
       </div>
     </header>
-
     <nav>
       <ul>
         <li><a href="List.html" id="MP_item">HTML</a></li>
@@ -74,12 +122,17 @@
         </div>
         <hr />
       </aside>
-
       <section>
         <div class="pt">
-          <!-- 게시판을 누를시 첫 페이지인 index.html로 이동 -->
-          <h1><a href="#">게시글 작성</a></h1>
           <div class="pt-write">
+            <form id="inputCategory">
+              <label for="categories">게시판 선택:</label>
+              <select id="inputCtg" name="category">
+                <option value="html">Html</option>
+                <option value="css">Css</option>
+                <option value="javascript">JavaScript</option></select
+              ><br /><br />
+            </form>
             <div class="pt-title">
               <input
                 id="inputTitle"
@@ -90,7 +143,6 @@
             </div>
 
             <div class="pt-text">
-              <!-- 내용을 입력하기 위해 textarea tag를 이용 -->
               <textarea
                 id="inputText"
                 name="content"
@@ -100,7 +152,9 @@
             </div>
           </div>
           <div class="pt-btn">
-            <button class="pt-btn-" type="button" onclick="post()">등록</button>
+            <button class="pt-btn-" type="button" onclick="addpost()">
+              등록
+            </button>
           </div>
         </div>
       </section>
