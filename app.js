@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 
 var cfRouter = require("./src/routes/cf.routes");
+// var cfCmtRouter = require("./src/routes/cf_cmt.routes");
 var lanRouter = require("./src/routes/lan.routes");
 var loginRouter = require("./src/routes/login.routes");
 var mypageRouter = require("./src/routes/mypage.routes");
@@ -13,16 +14,66 @@ var app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('/', express.static(path.join(__dirname,'public')));
+app.use('/', express.static(path.join(__dirname,'public')));    //d
 app.use(cookieParser());
 
+// app.get('/style.css', (req, res) => {
+//     res.type('text/css');
+//     res.sendFile(__dirname + '/public/style.css');
+// });
+// app.get('/posting.css', (req, res) => {
+//     res.type('text/css');
+//     res.sendFile(__dirname + '/public/style.css');
+// });
+
+// app.get('/index.js', (req, res) => {
+//     res.type('application/javascript');
+//     res.sendFile(__dirname + '/public/index.js');
+// });
+
 app.use("/main", (req, res) => {
-    res.sendFile(__dirname + "/public/index.html");
+    res.sendFile(__dirname + "src/public/index.html");
 });
 app.use("/cf", cfRouter);
-app.use("/cf", (req, res) => {
+app.get("/cf", (req, res) => {
     res.sendFile(__dirname + "/public/board.html");
 });
+
+
+
+
+// app.use("/cfCmt", cfCmtRouter);
+
+// app.get("/cfCmt", (req, res) => {
+//     res.sendFile(__dirname + "/public/board.html"); 
+// });
+
+
+// // app.get("/cfCmt", (req, res) => {
+// //     return res.sendFile(path.join(__dirname, "public", "board.html")); 
+// // });
+
+// app.use("/cfCmt", express.static(path.join(__dirname, 'public')));
+
+
+// app.use("/cfCmt", cfCmtRouter);
+
+
+// // app.get("/cfCmt", (req, res) => {
+// //     res.sendFile(path.join(__dirname, "public", "board.html")); 
+// // });
+
+
+// app.use("/cfCmt", express.static(path.join(__dirname, 'public', 'image')));
+// app.use("/cfCmt", cfCmtRouter);
+// app.get("/cfCmt", (req, res) => {
+//     res.sendFile(path.join(__dirname, "public", "board.html")); 
+// });
+
+
+
+
+
 app.use("/lan", lanRouter);
 app.use("/lan", (req, res) => {
     res.sendFile(__dirname + "/public/board.html");
