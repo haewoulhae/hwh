@@ -1,11 +1,12 @@
-const cfService = require("../service/cf.service");
+const publicService = require("../service/public.service");
 
-async function postBoard(req, res, next) {
-    const postBoard_req = req.query;
-    const postBoard_data = await cfService.postBoard(postBoard_req);
-    return res.status(postBoard_data.status).json(postBoard_data);
+async function getBoard(req, res, next) {
+    const getBoard_req = req.query;
+    console.log(getBoard_req)
+    const getBoard_data = await publicService.getBoard(getBoard_req);
+    return res.status(getBoard_data.Status).json(getBoard_data);
 }
 
 module.exports = {
-    postBoard
+    getBoard
 };

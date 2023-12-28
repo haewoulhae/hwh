@@ -20,7 +20,6 @@
             url: `/findid/findId`,
             dataType: 'json'
           }).done((findId_data) => {
-            console.log("나 바뀐다~~")
             document.location.href='/findid'
             alert(findId_data["Data"][0]["webid"]);
             console.log("데이터"+findId_data["Data"][0]["webid"])

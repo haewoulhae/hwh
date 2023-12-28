@@ -1,18 +1,28 @@
-const cfDao = require("../dao/cf.dao");
+const publicDao = require("../dao/public.dao");
 
-async function postBoard(req) {
+async function getBoard(req) {
     try {
+        console.log("service in", req)
         if(!req) {
             return {
                 "Message" : "요청 값이 없습니다.",
                 "Status" : 406
             }
         }
-        const postBoard_data = await cfDao.postBoard(req);
+        const comflower_data = await publicDao.getComflower(req);
+        const language_data = await publicDao.getLanguage(req);
+        var data =[]
+        for (const element_cf of comflower_data) {
+            data.push(element_cf);
+        }
+        for (const element_lan of language_data) {
+            data.push(element_lan);
+        }
+        console.log("service out", data);
         return {
             "Message" : "성공",
             "Status" : 200,
-            "Data" : postBoard_data
+            "Data" : data
         }
     } catch(err) {
         return {
@@ -24,5 +34,5 @@ async function postBoard(req) {
 }
 
 module.exports = {
-    postBoard
+    getBoard
 }

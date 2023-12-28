@@ -3,7 +3,7 @@ const db = require("../config/db");
 async function signUp(req) {
     return new Promise((resolve, reject) => {
         console.log("user_name: "+req.nickname)
-        var queryData = `insert into user(user_name , nikname , email, webid, webpw, user_ans) 
+        var queryData = `insert into user(user_name , nickname , email, webid, webpw, user_ans) 
         values('${req.name}','${req.id}','${req.password}','${req.nickname}','${req.mail}','${req.question}' )`;
         console.log(queryData)
         db.query(queryData, (error, db_data) => {
@@ -17,6 +17,7 @@ async function signUp(req) {
 }
 
 async function findId(req) {
+    console.log("dao 들어옴", req)
     return new Promise((resolve, reject) => {
         var queryData = `select webid from user where email = '${req.email}' and user_name = '${req.user_name}'`;
         db.query(queryData, (error, db_data) => {

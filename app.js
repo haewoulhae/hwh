@@ -15,6 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', express.static(path.join(__dirname,'public')));
 app.use(cookieParser());
 
+app.use("/main", publicRouter);
 app.use("/main", (req, res) => {
     res.sendFile(__dirname + "/public/index.html");
 });
@@ -26,6 +27,10 @@ app.use("/lan", lanRouter);
 app.use("/lan", (req, res) => {
     res.sendFile(__dirname + "/public/board.html");
 });
+app.use("/list", publicRouter);
+app.use("/list", (req, res) => {
+    res.sendFile(__dirname + "/public/list.html");
+})
 app.use("/login", loginRouter);
 app.use("/login", (req, res) => {
     res.sendFile(__dirname + "/public/Login.html");
@@ -46,7 +51,6 @@ app.use("/mypage", mypageRouter);
 app.use("/mypage", (req, res) => {
     res.sendFile(__dirname + "/public/MyPage.html");
 });
-app.use("/public", publicRouter);
 
 
 // 포트 열리는지 테스트 !

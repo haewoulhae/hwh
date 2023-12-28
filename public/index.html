@@ -8,6 +8,33 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script>
+      function getBoard() {
+        var body={};
+        body.search=document.getElementById("search").value;
+        console.log(body.search)
+        $.ajax({
+          url: "/main/getBoard",
+          data: body,
+          type: "GET",
+          dataType: "JSON"
+        }).done((getBoard_data) => {
+          console.log("html index in");
+          console.log(getBoard_data);
+          document.location.href='/list';
+          display_getBoard(getBoard_data);
+        }).fail((xhr, status, error) => {
+          console.log("getBoard html fail");
+        });
+      }
+      function display_getBoard(getBoard_data) {
+        for (var i=0; i<8; i++) {
+          var list_title_id = `listtitle${i+1}`;
+          document.getElementById(list_title_id).textContent = getBoard_data["Data"][i]["title"]
+        }
+      }
+    </script>
   </head>
   <body>
     <header>
@@ -41,11 +68,11 @@
       <aside>
         <input
           type="text"
-          method="POST"
+          method="GET"
           id="search"
           placeholder="검색"
           size="20"
-          onkeyup="if(window.event.keyCode==13){test()}"
+          onkeyup="if(window.event.keyCode==13){getBoard()}"
         />
         <hr />
         <div id="side_box">
@@ -78,7 +105,7 @@
           <img src="image/title_icon.ico" alt="" />
         </section>
       </div>
-      <aside id="aside" onclick="ad()">
+      <aside id="aside">
       </aside>
     </div>
     <footer>made by hwh</footer>
