@@ -1,0 +1,28 @@
+ 2023-12-26 11:23:29 || [ error ] ▶ uncaughtException: hotLst_req is not defined
+ReferenceError: hotLst_req is not defined
+    at hotList (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\src\controller\public.controller.js:6:54)
+    at Layer.handle [as handle_request] (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\express\lib\router\index.js:47:12)
+ 2023-12-26 11:45:21 || [ error ] ▶ DB error [cf_like]
+ 	SELECT cf_id id, cf_title, COUNT(cf_id) AS cnt
+        FROM cf_like GROUP BY cf_id
+ 	Error: Unknown column 'cf_title' in 'field list'
+ 2023-12-26 11:46:38 || [ error ] ▶ DB error [cf_like]
+ 	SELECT cl.cf_id id, c.cf_title, COUNT(cl.cf_id) AS cnt
+        FROM comflower c, cf_like cl GROUP BY cf_id
+ 	Error: Column 'cf_id' in group statement is ambiguous
+ 2023-12-26 11:46:53 || [ error ] ▶ DB error [cf_like]
+ 	SELECT cl.cf_id id, c.cf_title, COUNT(cl.cf_id) AS cnt
+        FROM comflower c, cf_like cl GROUP BY cl.cf_id
+ 	Error: Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'haewoulhae.c.cf_title' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+ 2023-12-26 11:47:51 || [ error ] ▶ DB error [cf_like]
+ 	SELECT cl.cf_id id, c.cf_title, COUNT(cl.cf_id) AS cnt
+        FROM comflower c, cf_like cl GROUP BY id
+ 	Error: Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'haewoulhae.c.cf_title' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by

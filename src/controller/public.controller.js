@@ -1,11 +1,18 @@
-const cfService = require("../service/cf.service");
+const publicService = require("../service/public.service");
 
-async function postBoard(req, res, next) {
-    const postBoard_req = req.query;
-    const postBoard_data = await cfService.postBoard(postBoard_req);
-    return res.status(postBoard_data.status).json(postBoard_data);
+async function hotList(req, res, next) {
+    const hotList_data = await publicService.hotList();
+    console.log(hotList_data);
+    return res.status(hotList_data.Status).json(hotList_data);
+}
+
+async function hotMember(req, res, next) {
+    const hotMember_data = await publicService.hotMember();
+    console.log(hotMember_data);
+    return res.status(hotMember_data.Status).json(hotMember_data);
 }
 
 module.exports = {
-    postBoard
+    hotList,
+    hotMember
 };

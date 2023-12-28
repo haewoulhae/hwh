@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var logger = require('morgan');
 
 var cfRouter = require("./src/routes/cf.routes");
 var lanRouter = require("./src/routes/lan.routes");
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', express.static(path.join(__dirname,'public')));
 app.use(cookieParser());
 
+app.use("/main", publicRouter);
 app.use("/main", (req, res) => {
     res.sendFile(__dirname + "/public/index.html");
 });
@@ -27,7 +29,7 @@ app.use("/lan", lanRouter);
 app.use("/lan", (req, res) => {
     res.sendFile(__dirname + "/public/board.html");
 });
-app.use("login", loginRouter);
+app.use("/login", loginRouter);
 app.use("/login", (req, res) => {
     res.sendFile(__dirname + "/public/Login.html");
 });
@@ -35,7 +37,7 @@ app.use("/mypage", mypageRouter);
 app.use("/mypage", (req, res) => {
     res.sendFile(__dirname + "/public/MyPage.html");
 });
-app.use("/public", publicRouter);
+
 
 // 포트 열리는지 테스트 !
 // app.get('/', function(req, res) {

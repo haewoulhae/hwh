@@ -1,18 +1,38 @@
-const cfDao = require("../dao/cf.dao");
+const publicDao = require("../dao/public.dao");
 
-async function postBoard(req) {
+async function hotList() {
     try {
-        if(!req) {
-            return {
-                "Message" : "요청 값이 없습니다.",
-                "Status" : 406
-            }
+        const hotList_cf = await publicDao.hotList_cf();
+        const hotList_lan = await publicDao.hotList_lan();
+        var hotList_data = [];
+        for (const element_cf of hotList_cf) {
+            hotList_data.push(element_cf)
         }
-        const postBoard_data = await cfDao.postBoard(req);
+        for (const element_lan of hotList_lan) {
+            hotList_data.push(element_lan)
+        }
+        const data = hotList_data.sort((a, b) => Number(b.cnt) - Number(a.cnt) || a.title.localeCompare(b.title));
         return {
             "Message" : "성공",
             "Status" : 200,
-            "Data" : postBoard_data
+            "Data" : data
+        }
+    } catch(err) {
+        return {
+            "Message" : "실패",
+            "Status" : 400,
+            "Error_Message" : err
+        }
+    }
+}
+
+async function hotMember() {
+    try {
+        const data = await publicDao.hotMember();
+        return {
+            "Message" : "성공",
+            "Status" : 200,
+            "Data" : data
         }
     } catch(err) {
         return {
@@ -24,5 +44,6 @@ async function postBoard(req) {
 }
 
 module.exports = {
-    postBoard
+    hotList,
+    hotMember
 }

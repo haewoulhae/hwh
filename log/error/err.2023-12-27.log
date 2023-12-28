@@ -1,0 +1,78 @@
+ 2023-12-27 11:42:27 || [ error ] ▶ DB error [cf_like]
+ 	SELECT cf_like.cf_id, count(cf_like.cf_id) as cnt,
+        comflower.cf_title title from cf_like inner join comflower
+        on cf_like.cf_id = comflower.cf_id group by cf_like.cf_id
+ 	Error: connect ETIMEDOUT
+ 2023-12-27 13:26:46 || [ error ] ▶ uncaughtException: Route.get() requires a callback function but got a [object Undefined]
+Error: Route.get() requires a callback function but got a [object Undefined]
+    at Route.<computed> [as get] (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\express\lib\router\route.js:211:15)
+    at proto.<computed> [as get] (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\express\lib\router\index.js:521:19)
+    at Object.<anonymous> (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\src\routes\public.routes.js:7:8)
+    at Module._compile (node:internal/modules/cjs/loader:1254:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1308:10)
+    at Module.load (node:internal/modules/cjs/loader:1117:32)
+    at Module._load (node:internal/modules/cjs/loader:958:12)
+    at Module.require (node:internal/modules/cjs/loader:1141:19)
+    at require (node:internal/modules/cjs/helpers:110:18)
+    at Object.<anonymous> (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\app.js:11:20)
+ 2023-12-27 13:27:32 || [ error ] ▶ uncaughtException: Route.get() requires a callback function but got a [object Undefined]
+Error: Route.get() requires a callback function but got a [object Undefined]
+    at Route.<computed> [as get] (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\express\lib\router\route.js:211:15)
+    at proto.<computed> [as get] (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\express\lib\router\index.js:521:19)
+    at Object.<anonymous> (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\src\routes\public.routes.js:7:8)
+    at Module._compile (node:internal/modules/cjs/loader:1254:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1308:10)
+    at Module.load (node:internal/modules/cjs/loader:1117:32)
+    at Module._load (node:internal/modules/cjs/loader:958:12)
+    at Module.require (node:internal/modules/cjs/loader:1141:19)
+    at require (node:internal/modules/cjs/helpers:110:18)
+    at Object.<anonymous> (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\app.js:11:20)
+ 2023-12-27 16:32:05 || [ error ] ▶ uncaughtException: logger is not defined
+ReferenceError: logger is not defined
+    at Query.onResult (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\src\dao\mypage.dao.js:9:17)
+    at PoolConnection._notifyError (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\mysql2\lib\connection.js:228:21)
+    at PoolConnection._handleFatalError (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\mysql2\lib\connection.js:183:10)
+    at PoolConnection.handlePacket (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\mysql2\lib\connection.js:488:12)
+    at PacketParser.onPacket (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\mysql2\lib\connection.js:97:12)
+    at PacketParser.executeStart (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.<anonymous> (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\mysql2\lib\connection.js:104:25)
+    at Socket.emit (node:events:513:28)
+    at addChunk (node:internal/streams/readable:324:12)
+    at readableAddChunk (node:internal/streams/readable:297:9)
+ 2023-12-27 16:32:41 || [ error ] ▶ DB error [comflower]
+ 	SELECT cf_id, cf_title, cf_post_time as time FROM comflower
+        WHERE user_id=[object Object] ORDER BY cf_post_time DESC
+ 	Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[object Object] ORDER BY cf_post_time DESC' at line 2
+ 2023-12-27 16:32:41 || [ error ] ▶ uncaughtException: Invalid status code: undefined
+RangeError [ERR_HTTP_INVALID_STATUS_CODE]: Invalid status code: undefined
+    at new NodeError (node:internal/errors:399:5)
+    at ServerResponse.writeHead (node:_http_server:344:11)
+    at ServerResponse._implicitHeader (node:_http_server:335:8)
+    at write_ (node:_http_outgoing:912:9)
+    at ServerResponse.end (node:_http_outgoing:1019:5)
+    at ServerResponse.send (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\express\lib\response.js:232:10)
+    at ServerResponse.json (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\express\lib\response.js:278:15)
+    at mine (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\src\controller\mypage.controller.js:8:40)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 2023-12-27 16:33:24 || [ error ] ▶ uncaughtException: Invalid status code: undefined
+RangeError [ERR_HTTP_INVALID_STATUS_CODE]: Invalid status code: undefined
+    at new NodeError (node:internal/errors:399:5)
+    at ServerResponse.writeHead (node:_http_server:344:11)
+    at ServerResponse._implicitHeader (node:_http_server:335:8)
+    at write_ (node:_http_outgoing:912:9)
+    at ServerResponse.end (node:_http_outgoing:1019:5)
+    at ServerResponse.send (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\express\lib\response.js:232:10)
+    at ServerResponse.json (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\express\lib\response.js:278:15)
+    at mine (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\src\controller\mypage.controller.js:8:40)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 2023-12-27 16:36:02 || [ error ] ▶ uncaughtException: Invalid status code: undefined
+RangeError [ERR_HTTP_INVALID_STATUS_CODE]: Invalid status code: undefined
+    at new NodeError (node:internal/errors:399:5)
+    at ServerResponse.writeHead (node:_http_server:344:11)
+    at ServerResponse._implicitHeader (node:_http_server:335:8)
+    at write_ (node:_http_outgoing:912:9)
+    at ServerResponse.end (node:_http_outgoing:1019:5)
+    at ServerResponse.send (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\express\lib\response.js:232:10)
+    at ServerResponse.json (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\node_modules\express\lib\response.js:278:15)
+    at mine (C:\Users\NT930\OneDrive\바탕 화면\WEB\haewoulhae\src\controller\mypage.controller.js:7:40)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
