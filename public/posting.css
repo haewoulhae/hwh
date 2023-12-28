@@ -167,3 +167,9 @@ textarea {
 .bd-pt-btn span:hover:after {
   width: 100%;
 }
+#post-userid {
+  font-size: 100px;
+}
+#post-title {
+  font-size: 155px;
+}
