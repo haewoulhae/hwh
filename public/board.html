@@ -145,32 +145,9 @@
         </div>
         <hr>
         <ul id="addcomment">
-          <li class="comment_user">임덕현</li>
-          <li class="comment_">불멍 폼 미쳤다</li>
-          <li class="comment_time">2023.12.20 13:11
-            <input type="button" class="comment_button" value="삭제">
-            <input type="button" class="comment_button" value="수정">
-          </li>
 
-          <hr>
-          <li class="comment_user">user</li>
-          <li class="comment_">아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏzz</li>
-          <li class="comment_time">2023.12.20 13:11</li>
-          <input type="button" class="comment_button" value="삭제">
-          <input type="button" class="comment_button" value="수정">
-          <hr>
         </ul>
 
-          <hr />
-          <li class="comment_user">user</li>
-          <li class="comment_">
-            아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏzz
-          </li>
-          <li class="comment_time">2023.12.20 13:11</li>
-          <input type="button" class="comment_button" value="삭제" />
-          <input type="button" class="comment_button" value="수정" />
-          <hr />
-        </ul>
       </section>
     </div>
     <footer>made by hwh</footer>
@@ -193,7 +170,7 @@
           .replace("T", " ");
         param.comment_like = 0;
         param.comment_class = 0;
-        param.comment_group = 0;
+        param.comment_group = incCmtgrp;
         param.comment_level = 0;
 
         $.ajax({
@@ -286,10 +263,11 @@
             dataType: "json",
           })
             .done((comments) => {
-              console.log("댓글 로딩");
+              console.log('댓글 로딩')
               incCmtId = comments.MaxCommentId + 1;
-              console.log(incCmtId);
-              console.log(comments.MaxCommentId);
+              incCmtgrp = comments.MaxCommentGroup + 1;
+              console.log(comments.MaxCommentId)
+              console.log(comments.MaxCommentGroup)
               displayComments(comments);
             })
             .fail((xhr, status, error) => {
@@ -298,9 +276,11 @@
         }
 
         function displayComments(commentsData) {
-          console.log(commentsData);
-          const $commentList = $("#addcomment");
+          console.log(commentsData)
+          const $commentList = $('#addcomment');
           $commentList.empty();
+          const $re_commentList = $('#addcomment');
+          $re_commentList.empty();
 
           if (!Array.isArray(commentsData.Data)) {
             commentsData.Data = [commentsData.Data];
@@ -322,8 +302,7 @@
             });
             const $editInput = $('<input>').attr({ type: 'text', id: 'editComment' + comment.comment_id, value: comment.content });
             const $editForm = $('<form>').attr('id', 'editForm' + comment.comment_id).css('display', 'none');
-            
-            //댓글 수정 아이디 바꾸기
+//댓글 수정 아이디 바꾸기
             const $re_commentInput = $('<input>').attr({ type: 'text', id: 're_comment', placeholder: '답글을 남겨주세요' });
             const $re_commentForm = $('<form>').attr('id', 're_commentForm' + comment.comment_id).css('display', 'none');
 
@@ -375,7 +354,6 @@
               $editButton.hide();
               $re_commentButton.hide();
             });
-
             const $Add_re_commentButton = $('<button>').addClass('addcomment_button').text('답글').on('click', function () {
               var time = new Date();
               time.setHours(time.getHours() + 9);
@@ -404,6 +382,7 @@
               }).fail((err)=>{
                   console.log(err);
               });
+
               //post로 댓글 아래에 공간 만들어서 댓글 새로 다는 느낌
               //근데 class로 부모, 자식 구분. 자식이면 들여쓰기
               //정렬은 그룹>클래스 순으로 변경
@@ -433,8 +412,9 @@
               $liUser.css('padding', '2px 2px 2px 10px')
               $commentList.append($liUser, $liContent, $liTime, $deleteButton, $editButton, $re_commentButton, $editForm, $br, $re_commentForm, $br, $hr);
             }
+            // $commentList.append($liUser, $liContent, $liTime, $deleteButton, $editButton, $re_commentButton, $editForm, $br, $re_commentForm, $br, $hr);
           });
-        }  
+        }
       });
     </script>
   </body>
