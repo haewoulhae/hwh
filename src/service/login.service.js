@@ -1,6 +1,6 @@
-const cfDao = require("../dao/cf.dao");
+const loginDao = require("../dao/login.dao");
 
-async function postBoard(req) {
+async function signUp(req) {
     try {
         if(!req) {
             return {
@@ -8,11 +8,57 @@ async function postBoard(req) {
                 "Status" : 406
             }
         }
-        const postBoard_data = await cfDao.postBoard(req);
+        const signUp_data = await loginDao.signUp(req);
         return {
             "Message" : "성공",
             "Status" : 200,
-            "Data" : postBoard_data
+            "Data" : signUp_data
+        }
+    } catch(err) {
+        return {
+            "Message" : "실패",
+            "Status" : 400,
+            "Error_Message" : err
+        }
+    }
+}
+
+async function findId(req) {
+    try {
+        if(!req) {
+            return {
+                "Message" : "요청 값이 없습니다.",
+                "Status" : 406
+            }
+        }
+        const findID_data = await loginDao.findId(req);
+        return {
+            "Message" : "성공",
+            "Status" : 200,
+            "Data" : findID_data
+        }
+    } catch(err) {
+        return {
+            "Message" : "실패",
+            "Status" : 400,
+            "Error_Message" : err
+        }
+    }
+}
+
+async function findPw(req) {
+    try {
+        if(!req) {
+            return {
+                "Message" : "요청 값이 없습니다.",
+                "Status" : 406
+            }
+        }
+        const findPw_data = await loginDao.findPw(req);
+        return {
+            "Message" : "성공",
+            "Status" : 200,
+            "Data" : findPw_data
         }
     } catch(err) {
         return {
@@ -24,5 +70,7 @@ async function postBoard(req) {
 }
 
 module.exports = {
-    postBoard
+    signUp,
+    findId,
+    findPw
 }

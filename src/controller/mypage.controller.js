@@ -1,11 +1,13 @@
-const cfService = require("../service/cf.service");
+const mypageService = require("../service/mypage.service");
 
-async function postBoard(req, res, next) {
-    const postBoard_req = req.query;
-    const postBoard_data = await cfService.postBoard(postBoard_req);
-    return res.status(postBoard_data.status).json(postBoard_data);
+async function mine(req, res, next) {
+    const mine_req = req.query;
+    console.log("controller in", mine_req);
+    const mine_data = await mypageService.mine(mine_req);
+    console.log("controller mine", mine_data)
+    return res.status(mine_data.Status).json(mine_data);
 }
 
 module.exports = {
-    postBoard
+    mine
 };

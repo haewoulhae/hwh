@@ -8,16 +8,66 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script>
       function signUp(){
-        var param={};
-        param.user_name=document.getElementsByName("name").values;
-        param.nickname=document.getElementsByName("nickname").values;
-        param.email=document.getElementsByName("email").values;
-        param.webid=document.getElementsByName("id").values;
-        param.webpw=document.getElementsByName("pw").values;
-        param.user_ans=document.getElementsByName("question").values;
+        var body={};
+        body.user_name=document.getElementsByName("name").value;
+        body.nickname=document.getElementsByName("nickname").value;
+        body.email=document.getElementsByName("email").value;
+        body.webId=document.getElementsByName("id").value;
+        body.webPw=document.getElementsByName("pw").value;
+        body.user_ans=document.getElementsByName("question").value;
+        var ajax = $.ajax({
+          url: "/create",
+          data: body,
+          type: "POST",
+          dataType: "JSON"
+        });
+        location.href("/")
       }
+      $(document).ready(() => {
+        getHotList();
+        getHotMember();
+        function getHotList() {
+          $.ajax({
+            type: 'GET',
+            url: `/main/hotlist`,
+            dataType: 'json'
+          }).done((hotList_data) => {
+            console.log('html in hotlist');
+            console.log(hotList_data);
+            display_hotList(hotList_data);
+          }).fail((xhr, status, error) => {
+            console.log("html hotList fail");
+          });
+        }
+        function getHotMember() {
+          $.ajax({
+            type: 'GET',
+            url: `/main/hotmember`,
+            dataType: 'json'
+          }).done((hotMember_data) => {
+            console.log('html in hotmember');
+            console.log(hotMember_data);
+            display_hotMember(hotMember_data);
+          }).fail((xhr, status, error) => {
+            console.log("html hotMember fail");
+          });
+        }
+        function display_hotList(hotList_data) {
+          for(var i=0; i<5; i++){
+              var id = `hotlist${i+1}`
+              document.getElementById(id).textContent = hotList_data["Data"][i]["title"]
+            }
+        }
+        function display_hotMember(hotMember_data) {
+          for(var i=0; i<5; i++) {
+            var id = `hotmember${i+1}`
+            document.getElementById(id).textContent = hotMember_data["Data"][i]["nickname"]
+          }
+        }
+      });
     </script>
   </head>
   <body>
@@ -26,14 +76,14 @@
         <div class="MP_Title">
           <span
             ><img src="image/title.svg" />
-            <h1><a href="index.html" id="MP_item">해 울 해</a></h1></span
+            <h1><a href="/main" id="MP_item">해 울 해</a></h1></span
           >
         </div>
         <div class="login">
           <span
             ><b
-              ><a href="Login.html" id="MP_item">로그인</a>
-              <a href="CreateAcount.html" id="MP_item">회원가입</a></b
+              ><a href="/login" id="MP_item">로그인</a>
+              <a href="/create" id="MP_item">회원가입</a></b
             ></span
           >
         </div>
@@ -42,11 +92,11 @@
 
     <nav>
       <ul>
-        <li><a href="List.html" id="MP_item">HTML</a></li>
-        <li><a href="List.html" id="MP_item">CSS</a></li>
-        <li><a href="List.html" id="MP_item">JavaScript</a></li>
-        <li><a href="List.html" id="MP_item">Seminar</a></li>
-        <li><a href="List.html" id="MP_item">Project</a></li>
+        <li><a href="/lan" id="MP_item">HTML</a></li>
+        <li><a href="/lan" id="MP_item">CSS</a></li>
+        <li><a href="/lan" id="MP_item">JavaScript</a></li>
+        <li><a href="/cf" id="MP_item">Seminar</a></li>
+        <li><a href="/cf" id="MP_item">Project</a></li>
       </ul>
     </nav>
 
@@ -65,19 +115,23 @@
         <hr />
         <div id="side_box">
           <h3>인기 글</h3>
-          <ul id="side_menu">
-            <li>인기1</li>
-            <li>인기2</li>
-            <li>인기3</li>
+          <ul id="side_menu" style="list-style: none;">
+            <li id="hotlist1">인기1</li>
+            <li id="hotlist2">인기2</li>
+            <li id="hotlist3">인기3</li>
+            <li id="hotlist4">인기4</li>
+            <li id="hotlist5">인기5</li>
           </ul>
         </div>
         <hr />
         <div id="side_box">
           <h3>인기 멤버</h3>
-          <ul id="side_menu">
-            <li>인기1</li>
-            <li>인기2</li>
-            <li>인기3</li>
+          <ul id="side_menu" style="list-style: none;">
+            <li id="hotmember1">인기1</li>
+            <li id="hotmember2">인기2</li>
+            <li id="hotmember3">인기3</li>
+            <li id="hotmember4">인기3</li>
+            <li id="hotmember5">인기3</li>
           </ul>
         </div>
         <hr />
@@ -86,7 +140,7 @@
       <section>
         <div class="CA-wrapper">
           <h2>회원가입</h2>
-          <form method="post" action="/create" id="CA-form">
+          <form action="/create" method="post" id="CA-form">
             <input type="text" name="name" placeholder="이름" class="create"/>
             <input type="text" name="id" placeholder="ID" class="create"/>
             <input type="password" name="password" placeholder="Password" class="create"/>
@@ -98,19 +152,11 @@
               class="create"
             />
             <input type="text" name="question" placeholder="좋아하는 과일은?"  class="create" />
-            <input type="submit" onclick="create()" class="createBtn" value="회원가입">
-        <div class="findPW-wrapper">
-          <h2>비밀번호 찾기</h2>
-          <form method="post" action="url" id="findPW-form">
-            <input type="text" name="id" placeholder="아이디" />
-            <input type="text" name="question" placeholder="좋아하는 과일은?" />
-            <input type="submit" value="확인" />
-          </form>
-        </div>
+            <input type="submit" onclick="signUp()" class="createBtn" value="회원가입">
       </section>
     </div>
 
     <footer>해울해 파이팅~ ~~~ ~~~~~~~~</footer>
-    <script src="index.js"></script>
+    <script src="/main"></script>
   </body>
 </html>

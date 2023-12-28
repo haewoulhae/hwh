@@ -1,7 +1,8 @@
 var express = require("express");
 const router = express.Router();
-const cfController = require("../controller/cf.controller")
+const mypageController = require("../controller/mypage.controller")
 
-router.get("/postBoard", cfController.postBoard);
+router.get("/mine", mypageController.mine);
+
 
 module.exports = router;

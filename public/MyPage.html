@@ -8,6 +8,77 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(() => {
+        var body = {user_id : 3};
+        getHotList();
+        getHotMember();
+        getMine(body);
+        function getHotList() {
+          $.ajax({
+            type: 'GET',
+            url: `/main/hotlist`,
+            dataType: 'json'
+          }).done((hotList_data) => {
+            console.log('html in hotlist');
+            console.log(hotList_data);
+            display_hotList(hotList_data);
+          }).fail((xhr, status, error) => {
+            console.log("html hotList fail");
+          });
+        }
+        function getHotMember() {
+          $.ajax({
+            type: 'GET',
+            url: `/main/hotmember`,
+            dataType: 'json'
+          }).done((hotMember_data) => {
+            console.log('html in hotmember');
+            console.log(hotMember_data);
+            display_hotMember(hotMember_data);
+          }).fail((xhr, status, error) => {
+            console.log("html hotMember fail");
+          });
+        }
+        function getMine(body) {
+          $.ajax({
+            data: body,
+            type: 'GET',
+            url: `/mypage/mine`,
+            dataType: 'json'
+          }).done((getMine_data) => {
+            console.log('html in mine');
+            console.log(getMine_data);
+            display_getMine(getMine_data);
+          }).fail((xhr, status, error) => {
+            console.log("html mine fail");
+          })
+        }
+        function display_hotList(hotList_data) {
+          for(var i=0; i<5; i++){
+              var id = `hotlist${i+1}`
+              document.getElementById(id).textContent = hotList_data["Data"][i]["title"]
+            }
+        }
+        function display_hotMember(hotMember_data) {
+          for(var i=0; i<5; i++) {
+            var id = `hotmember${i+1}`
+            document.getElementById(id).textContent = hotMember_data["Data"][i]["nikname"]
+          }
+        }
+        function display_getMine(getMine_data) {
+          for(var i=0; i<3; i++) {
+            var title_id = `mytitle${i+1}`
+            document.getElementById(title_id).textContent = getMine_data["Data"][i]["title"]
+            var posttime_id = `myposttime${i+1}`
+            document.getElementById(posttime_id).textContent = getMine_data["Data"][i]["time"]
+            var board_id = `board${i+1}`
+            document.getElementById(board_id).textContent = getMine_data["Data"][i]["board"]
+          }
+        }
+      });
+    </script>
   </head>
   <body>
     <header>
@@ -15,37 +86,56 @@
         <div class="MP_Title">
           <span
             ><img src="image/title.svg" />
-            <h1><a href="index.html" id="MP_item">해 울 해</a></h1></span
+            <h1><a href="/main" id="MP_item">해 울 해</a></h1></span
           >
         </div>
         <div class="MP_user-info">
-          <span><a href="Mypage.html"><img src="image/user_icon.ico" /></a>user_ID</span>
+          <span><a href="/mypage"><img src="image/user_icon.ico" /></a>user_ID</span>
         </div>
       </div>
     </header>
-
     <nav>
       <ul>
-        <li><a href="List.html" id="MP_item">HTML</a></li>
-        <li><a href="List.html" id="MP_item">CSS</a></li>
-        <li><a href="List.html" id="MP_item">JavaScript</a></li>
-        <li><a href="List.html" id="MP_item">Seminar</a></li>
-        <li><a href="List.html" id="MP_item">Project</a></li>
+        <li><a href="/lan" id="MP_item">HTML</a></li>
+        <li><a href="/lan" id="MP_item">CSS</a></li>
+        <li><a href="/lan" id="MP_item">JavaScript</a></li>
+        <li><a href="/cf" id="MP_item">Seminar</a></li>
+        <li><a href="/cf" id="MP_item">Project</a></li>
       </ul>
-      <!--안녕하세요-->
     </nav>
-
     <br />
-
     <div class="MP_container">
-      <!--sd-->
       <aside>
-        <input type="text" placeholder="검색" size="20" />
-        <br /><br /><br />
-        <h3>인기글</h3>
+        <input
+          type="text"
+          method="POST"
+          id="search"
+          placeholder="검색"
+          size="20"
+          onkeyup="if(window.event.keyCode==13){test()}"
+        />
         <hr />
-        <br />
-        <h3>인기멤버</h3>
+        <div id="side_box">
+          <h3>인기 글</h3>
+          <ul id="side_menu" style="list-style: none;">
+            <li id="hotlist1">인기1</li>
+            <li id="hotlist2">인기2</li>
+            <li id="hotlist3">인기3</li>
+            <li id="hotlist4">인기4</li>
+            <li id="hotlist5">인기5</li>
+          </ul>
+        </div>
+        <hr />
+        <div id="side_box">
+          <h3>인기 멤버</h3>
+          <ul id="side_menu" style="list-style: none;">
+            <li id="hotmember1">인기1</li>
+            <li id="hotmember2">인기2</li>
+            <li id="hotmember3">인기3</li>
+            <li id="hotmember4">인기3</li>
+            <li id="hotmember5">인기3</li>
+          </ul>
+        </div>
         <hr />
       </aside>
 
@@ -54,14 +144,32 @@
           <div><h3>내가 쓴 글</h3></div>
           <hr /><br />
           <table>
-            <tr>
-              <td id="MP_item">게시글 0<span class="mypost_time">23.12.18.16:00</span> <span class="mypost_cf">comflower</span></td>
+            <tr id="tr">
+              <div id="MP_item">
+                <div id="post_box">
+                  <p id='mytitle1' class="mypost_title">게시글 0</p>
+                  <p id='board1' class="mypost_cf">comflower</p>
+                  <p id='myposttime1' class="mypost_time">23.12.18.16:00</d>
+                </div>
+              </div>
             </tr>
             <tr>
-              <td id="MP_item">게시글 0<span class="mypost_time">23.12.18.16:00</span> <span class="mypost_lan">language</span></td>
+              <div id="MP_item">
+                <div id="post_box">
+                  <p id='mytitle2' class="mypost_title">게시글 0</p>
+                  <p id='board2' class="mypost_cf">comflower</p>
+                  <p id='myposttime2' class="mypost_time">23.12.18.16:00</p>
+                </div>
+              </div>
             </tr>
             <tr>
-              <td id="MP_item">게시글 0<span class="mypost_time">23.12.18.16:00</span> <span class="mypost_cf">comflower</span></td>
+              <div id="MP_item">
+                <div id="post_box">
+                  <p id='mytitle3' class="mypost_title">게시글 0</p>
+                  <p id='myposttime3' class="mypost_time">23.12.18.16:00</p>
+                  <p id='board3' class="mypost_cf">comflower</p>
+                </div>
+              </div>
             </tr>
           </table>
           <br /><br /><br /><br />
@@ -97,6 +205,6 @@
     </div>
 
     <footer>해울해 파이팅~ ~~~ ~~~~~~~~</footer>
-    <script src="index.js"></script>
+    <script src="/main"></script>
   </body>
 </html>

@@ -276,7 +276,7 @@ footer {
 #findID-form > input[type="submit"] {
   color: #fff;
   font-size: 16px;
-  background-color: #cdcdcd;
+  background-color: #383838;
   margin-top: 20px;
 }
 .findPW-wrapper {
@@ -309,7 +309,7 @@ footer {
 #findPW-form > input[type="submit"] {
   color: #fff;
   font-size: 16px;
-  background-color: #999898;
+  background-color: #383838;
   margin-top: 20px;
 }
 #MP_item {
@@ -328,6 +328,9 @@ h1 a {
 }
 #side_menu {
   margin-left: 10%;
+}
+#side_menu > li {
+  margin-top: 7%;
 }
 #side_box {
   height: 40%;
@@ -355,10 +358,11 @@ h1 a {
 }
 
 .mypost_time {
+  position: absolute;
+  top: 25%;
   text-align: right;
-  width:120px;
   color:#b1b1b1;
-  margin-left: 1%;
+  margin-left: 85%;
 }
 section table {
   width:100%;
@@ -377,7 +381,11 @@ section span{
   float: right;
 }
 .mypost_cf {
+  text-align: right;
+  margin-left: 75%;
   color:#ecd417;
+  position: absolute;
+  top: 25%;
 }
 .mypost_lan {
   color:#ae5f2e;
@@ -389,6 +397,8 @@ section span{
   margin-top: 20px;
   width: 100%;
   height: 48px;
+  border: none;
+  border-radius: 5px;
 }
 #commentbox {
   width: 100%;
@@ -434,8 +444,62 @@ section hr{
 }
 .comment_time{
   color:#b1b1b1;
+  float: left;
+  /* font-size: 14px; */
 }
 section li{
   width: 90%;
   padding: 2px 2px 2px 10px;
+}
+#post_box{
+  position: relative;
+  height: 50px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 100px 500px 400px;
+}
+.mypost_title{
+  position: absolute;
+  top: 25%;
+}
+section span{
+  padding: 0 0 0 10px;
+}
+.comment_button {
+  float: right;
+  margin-left: 7px;
+  font-size: 15px;
+  border: none;
+  background-color: rgb(250, 250, 250);
+  color:#a8a8a8;
+  /* font-weight: bold; */
+}
+section form {
+  padding: 0 0 0 10px;
+}
+section input {
+  width: 92%;
+  height: 20px;
+  padding: 1px 1px 1px 5px;
+  box-sizing: border-box;
+  /* margin-bottom: 16px; */
+  border-radius: 3px;
+  background-color: #ececec;
+  color: #6d6d6d;
+  resize: none;
+  border: none;
+  float: left;
+  box-shadow: none;
+}
+::selection {
+  background-color: #d0dbff;
+}
+.addcomment_button {
+  float: right;
+  margin-left: 7px;
+  font-size: 15px;
+  border: none;
+  background-color: rgb(250, 250, 250);
+  color:#7a7a7a;
+  font-weight: bold;
 }
