@@ -20,12 +20,12 @@ app.use("/main", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
 app.use("/cf", cfRouter);
-app.use("/cf", (req, res) => {
+app.get("/cf", (req, res) => {
   res.sendFile(__dirname + "/public/board.html");
 });
 app.use("/lan", lanRouter);
-app.use("/lan", (req, res) => {
-  res.sendFile(__dirname + "/public/board.html");
+app.get("/lan", (req, res) => {
+  res.sendFile(__dirname + "/public/posting.html");
 });
 app.use("login", loginRouter);
 app.use("/login", (req, res) => {

@@ -17,8 +17,9 @@ async function delLanBoard(req, res, next) {
   return res.status(delLanBoard_data.Status).json(delLanBoard_data);
 }
 async function getLanBoard(req, res, next) {
-  const getLanBoard_req = { lan_id: 1 };
+  const getLanBoard_req = req.query;
   const getLanBoard_data = await lanService.getLanBoard(getLanBoard_req);
+  console.log(getLanBoard_data);
   return res.status(getLanBoard_data.Status).json(getLanBoard_data);
 }
 

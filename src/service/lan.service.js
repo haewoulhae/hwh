@@ -9,6 +9,7 @@ async function postLanBoard(req) {
       };
     }
     const postLanBoard_data = await lanDao.postLanBoard(req);
+    //등록 버튼 누를때마다 카운트++
     return {
       Message: "성공",
       Status: 200,
