@@ -1,8 +1,8 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+var createError = require("http-errors");
+var express = require("express");
+var path = require("path");
+var cookieParser = require("cookie-parser");
+var logger = require("morgan");
 
 var cfRouter = require("./src/routes/cf.routes");
 var lanRouter = require("./src/routes/lan.routes");
@@ -13,16 +13,16 @@ var publicRouter = require("./src/routes/public.routes");
 var app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use('/', express.static(path.join(__dirname,'public')));
+app.use("/", express.static(path.join(__dirname, "public")));
 app.use(cookieParser());
 
 app.use("/main", publicRouter);
 app.use("/main", (req, res) => {
-    res.sendFile(__dirname + "/public/index.html");
+  res.sendFile(__dirname + "/public/index.html");
 });
 app.use("/cf", cfRouter);
 app.get("/cf", (req, res) => {
-    res.sendFile(__dirname + "/public/board.html");
+  res.sendFile(__dirname + "/public/cfboard.html");
 });
 app.use("/lan", lanRouter);
 app.get("/lan", (req, res) => {
@@ -30,23 +30,23 @@ app.get("/lan", (req, res) => {
 });
 app.use("/list", publicRouter);
 app.use("/list", (req, res) => {
-    res.sendFile(__dirname + "/public/list.html");
-})
+  res.sendFile(__dirname + "/public/list.html");
+});
 app.use("/login", loginRouter);
 app.use("/login", (req, res) => {
   res.sendFile(__dirname + "/public/Login.html");
 });
 app.use("/create", loginRouter);
 app.use("/create", (req, res) => {
-    res.sendFile(__dirname + "/public/CreateAcount.html");
+  res.sendFile(__dirname + "/public/CreateAcount.html");
 });
 app.use("/findid", loginRouter);
 app.use("/findid", (req, res) => {
-    res.sendFile(__dirname + "/public/FindID.html");
+  res.sendFile(__dirname + "/public/FindID.html");
 });
 app.use("/findpw", loginRouter);
 app.use("/findpw", (req, res) => {
-    res.sendFile(__dirname + "/public/FindPW.html");
+  res.sendFile(__dirname + "/public/FindPW.html");
 });
 app.use("/mypage", mypageRouter);
 app.use("/mypage", (req, res) => {

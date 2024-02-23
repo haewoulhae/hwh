@@ -7,12 +7,13 @@ async function postLanBoard(req, res, next) {
   return res.status(postLanBoard_data.Status).json(postLanBoard_data);
 }
 async function editLanBoard(req, res, next) {
-  const editLanBoard_req = req.query;
+  const editLanBoard_req = req.body;
+  console.log(editLanBoard_req);
   const editLanBoard_data = await lanService.editLanBoard(editLanBoard_req);
   return res.status(editLanBoard_data.Status).json(editLanBoard_data);
 }
 async function delLanBoard(req, res, next) {
-  const delLanBoard_req = req.query;
+  const delLanBoard_req = req.body;
   const delLanBoard_data = await lanService.delLanBoard(delLanBoard_req);
   return res.status(delLanBoard_data.Status).json(delLanBoard_data);
 }

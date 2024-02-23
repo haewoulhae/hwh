@@ -12,47 +12,57 @@
       href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Nanum+Gothic&display=swap"
       rel="stylesheet"
     />
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
     <script>
       $(document).ready(() => {
         getHotList();
         getHotMember();
         function getHotList() {
           $.ajax({
-            type: 'GET',
+            type: "GET",
             url: `/main/hotlist`,
-            dataType: 'json'
-          }).done((hotList_data) => {
-            console.log('html in hotlist');
-            console.log(hotList_data);
-            display_hotList(hotList_data);
-          }).fail((xhr, status, error) => {
-            console.log("html hotList fail");
-          });
+            dataType: "json",
+          })
+            .done((hotList_data) => {
+              console.log("html in hotlist");
+              console.log(hotList_data);
+              display_hotList(hotList_data);
+            })
+            .fail((xhr, status, error) => {
+              console.log("html hotList fail");
+            });
         }
         function getHotMember() {
           $.ajax({
-            type: 'GET',
+            type: "GET",
             url: `/main/hotmember`,
-            dataType: 'json'
-          }).done((hotMember_data) => {
-            console.log('html in hotmember');
-            console.log(hotMember_data);
-            display_hotMember(hotMember_data);
-          }).fail((xhr, status, error) => {
-            console.log("html hotMember fail");
-          });
+            dataType: "json",
+          })
+            .done((hotMember_data) => {
+              console.log("html in hotmember");
+              console.log(hotMember_data);
+              display_hotMember(hotMember_data);
+            })
+            .fail((xhr, status, error) => {
+              console.log("html hotMember fail");
+            });
         }
         function display_hotList(hotList_data) {
-          for(var i=0; i<5; i++){
-              var id = `hotlist${i+1}`
-              document.getElementById(id).textContent = hotList_data["Data"][i]["title"]
-            }
+          for (var i = 0; i < 5; i++) {
+            var id = `hotlist${i + 1}`;
+            document.getElementById(id).textContent =
+              hotList_data["Data"][i]["title"];
+          }
         }
         function display_hotMember(hotMember_data) {
-          for(var i=0; i<5; i++) {
-            var id = `hotmember${i+1}`
-            document.getElementById(id).textContent = hotMember_data["Data"][i]["nickname"]
+          for (var i = 0; i < 5; i++) {
+            var id = `hotmember${i + 1}`;
+            document.getElementById(id).textContent =
+              hotMember_data["Data"][i]["nickname"];
           }
         }
       });
@@ -104,7 +114,7 @@
         <hr />
         <div id="side_box">
           <h3>인기 글</h3>
-          <ul id="side_menu" style="list-style: none;">
+          <ul id="side_menu" style="list-style: none">
             <li id="hotlist1">인기1</li>
             <li id="hotlist2">인기2</li>
             <li id="hotlist3">인기3</li>
@@ -115,7 +125,7 @@
         <hr />
         <div id="side_box">
           <h3>인기 멤버</h3>
-          <ul id="side_menu" style="list-style: none;">
+          <ul id="side_menu" style="list-style: none">
             <li id="hotmember1">인기1</li>
             <li id="hotmember2">인기2</li>
             <li id="hotmember3">인기3</li>
@@ -127,96 +137,17 @@
       </aside>
 
       <section>
-        <div class="pt-container" id="addpost">
-          <h1 id="post-title"></h1>
-          <div id="post-userid"></div>
-          <div id="post-time"></div>
-          <br />
-          <iframe id="post-file" width="500" height="800"></iframe>
-          <br /><br />
-          <div id="post-content"></div>
-        </div>
-        <div class="pt-btn-con">
-          <fieldset id="commentbox">
-            <textarea id="comment" placeholder="댓글을 남겨보세요"></textarea>
-            <button
-              onclick="addComment()"
-              class="commentbox_button">등록
-            </button>
-          </fieldset>
-        </div>
-        <hr>
-        <ul id="addcomment">
-          <li class="comment_user">임덕현</li>
-          <li class="comment_">불멍 폼 미쳤다</li>
-          <li class="comment_time">2023.12.20 13:11
-            <input type="button" class="comment_button" value="삭제">
-            <input type="button" class="comment_button" value="수정">
-          </li>
-
-          <hr>
-          <li class="comment_user">user</li>
-          <li class="comment_">아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏzz</li>
-          <li class="comment_time">2023.12.20 13:11</li>
-          <input type="button" class="comment_button" value="삭제">
-          <input type="button" class="comment_button" value="수정">
-          <hr>
-        </ul>
-
-          <hr />
-          <li class="comment_user">user</li>
-          <li class="comment_">
-            아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏzz
-          </li>
-          <li class="comment_time">2023.12.20 13:11</li>
-          <input type="button" class="comment_button" value="삭제" />
-          <input type="button" class="comment_button" value="수정" />
-          <hr />
-        </ul>
+        <div class="pt-container" id="addpost"></div>
       </section>
     </div>
     <footer>made by hwh</footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
-      var incCmtId = 1;
-      var incCmtgrp = 1;
-      function addComment(){
-        var time = new Date();
-        time.setHours(time.getHours() + 9);
-
-        var param = {};
-        param.comment_id = incCmtId;
-        param.user_id = 1;
-        param.cf_id = 1;
-        param.content = $("#comment").val();
-        param.comment_datetime = time
-          .toISOString()
-          .slice(0, 19)
-          .replace("T", " ");
-        param.comment_like = 0;
-        param.comment_class = 0;
-        param.comment_group = 0;
-        param.comment_level = 0;
-
-        $.ajax({
-          type: "POST",
-          url: "http://localhost:5500/cf/postCmt",
-          data: JSON.stringify(param),
-          headers: { "content-type": "application/json; charset=utf-8" },
-          dataType: "json",
-        })
-          .done((res) => {
-            location.reload();
-          })
-          .fail((err) => {
-            console.log(err);
-          });
-      }
       // 게시글
       $(document).ready(() => {
         getposts();
         function getposts() {
-          var body = { lan_id: 25 };
+          var body = { lan_id: 17 };
           $.ajax({
             type: "GET",
             url: "http://localhost:5500/lan/getLanBoard",
@@ -245,7 +176,7 @@
               postData.Data.forEach((post) => {
                 const $lipUser = $("<li>")
                   .attr("id", "post-userid")
-                  .text(post.user_id);
+                  .text(post.nickname);
                 const $lipTitle = $("<li>")
                   .attr("id", "post-title")
                   .text(post.lan_title);
@@ -262,13 +193,54 @@
                   .attr("id", "edit-time")
                   .text(post.lan_edit_time);
 
+                //게시글 수정 페이지 이동
+                const $editBtn = $("<button>")
+                  .addClass("pt--btn")
+                  .text("수정")
+                  .on("click", function () {
+                    console.log("수정 버튼 클릭 - lan_id:", post.lan_id);
+                    window.location.href = "/edit.html?lan_id=" + post.lan_id;
+                  });
+
+                // 게시글 삭제
+                const $delButton = $("<button>")
+                  .addClass("pt--btn")
+                  .text("삭제")
+                  .on("click", function () {
+                    console.log("삭제 버튼 클릭 - lan_id:", post.lan_id);
+                    var confirmDelete = confirm("진짜 삭제한다고..???");
+                    if (confirmDelete) {
+                      var delparam = {};
+                      delparam.lan_id = post.lan_id;
+
+                      $.ajax({
+                        type: "DELETE",
+                        url: "http://localhost:5500/lan/delLanBoard",
+                        data: JSON.stringify(delparam),
+                        headers: {
+                          "content-type": "application/json; charset=utf-8",
+                        },
+                        dataType: "json",
+                      })
+                        .done((postdata) => {
+                          alert("S2삭제 완료2S");
+                          location.href = "/List.html";
+                        })
+                        .fail((xhr, status, error) => {
+                          console.error("삭제 실패:", xhr, status, error);
+                        });
+                    } else {
+                    }
+                  });
                 $postList.append(
+                  $delButton,
+                  $editBtn,
                   $lipUser,
+                  $lipTime,
+                  $lipEditTime,
                   $lipTitle,
                   $lipFile,
-                  $lipContent,
-                  $lipTime,
-                  $lipEditTime
+                  $lipContent
                 );
               });
             } else {
@@ -276,167 +248,6 @@
             }
           }
         }
-      });
-      // 댓글
-      $(document).ready(() => {
-        getComments();
-
-        function getComments() {
-          $.ajax({
-            type: "GET",
-            url: "http://localhost:5500/cf/getCmt",
-            dataType: "json",
-          })
-            .done((comments) => {
-              console.log("댓글 로딩");
-              incCmtId = comments.MaxCommentId + 1;
-              console.log(incCmtId);
-              console.log(comments.MaxCommentId);
-              displayComments(comments);
-            })
-            .fail((xhr, status, error) => {
-              console.error("댓글 가져오기 실패:", xhr, status, error);
-            });
-        }
-
-        function displayComments(commentsData) {
-          console.log(commentsData);
-          const $commentList = $("#addcomment");
-          $commentList.empty();
-
-          if (!Array.isArray(commentsData.Data)) {
-            commentsData.Data = [commentsData.Data];
-          }
-
-          commentsData.Data.forEach((comment) => {
-            const $liUser = $('<li>').addClass('comment_user').text(comment.nickname);
-            const $liContent = $('<li>').addClass('comment_').text(comment.content);
-            const $liTime = $('<span>').addClass('comment_time').text(comment.comment_datetime);
-
-            const $editButton = $('<button>').addClass('comment_button').text('수정').on('click', function () {
-              console.log('수정 버튼 클릭 - comment_id:', comment.comment_id);
-              $('#editForm' + comment.comment_id).show();
-              $editInput.select();
-              $liTime.hide();
-              $re_commentButton.hide();
-              $editButton.hide();
-
-            });
-            const $editInput = $('<input>').attr({ type: 'text', id: 'editComment' + comment.comment_id, value: comment.content });
-            const $editForm = $('<form>').attr('id', 'editForm' + comment.comment_id).css('display', 'none');
-            
-            //댓글 수정 아이디 바꾸기
-            const $re_commentInput = $('<input>').attr({ type: 'text', id: 're_comment', placeholder: '답글을 남겨주세요' });
-            const $re_commentForm = $('<form>').attr('id', 're_commentForm' + comment.comment_id).css('display', 'none');
-
-            const $saveButton = $('<button>').addClass('addcomment_button').text('수정').on('click', function () {
-                var time = new Date();
-                time.setHours(time.getHours() + 9);
-
-                var putparam = {};
-                putparam.comment_id = comment.comment_id;
-                putparam.content = $editInput.val();
-                putparam.comment_datetime = time.toISOString().slice(0, 19).replace('T', ' ');
-
-                $.ajax({
-                  type: 'PUT',
-                  url: 'http://localhost:5500/cf/putCmt',
-                  data : JSON.stringify(putparam),
-                  headers : {"content-type":"application/json; charset=utf-8"},
-                  dataType: 'json',
-                }).done((comments) => {
-                }).fail((xhr, status, error) => {
-                  console.error('댓글 수정 실패:', xhr, status, error);
-                });
-              }
-            );
-            const $deleteButton = $('<button>').addClass('comment_button').text('삭제').on('click', function () {
-              console.log('삭제 버튼 클릭 - comment_id:', comment.comment_id);
-
-              var delparam = {};
-              delparam.comment_id = comment.comment_id;
-
-              $.ajax({
-                  type: 'DELETE',
-                  url: 'http://localhost:5500/cf/deleteCmt',
-                  data : JSON.stringify(delparam),
-                  headers : {"content-type":"application/json; charset=utf-8"},
-                  dataType: 'json',
-                }).done((comments) => {
-                  location.reload();
-                }).fail((xhr, status, error) => {
-                  console.error('댓글 삭제 실패:', xhr, status, error);
-                });
-            });
-
-            const $re_commentButton = $('<button>').addClass('comment_button').text('답글').on('click', function () {
-              console.log('답글 달기 버튼 클릭 - comment_id:', comment.comment_id);
-              $('#re_commentForm' + comment.comment_id).show();
-              $re_commentInput.select();
-              $liTime.hide();
-              $editButton.hide();
-              $re_commentButton.hide();
-            });
-
-            const $Add_re_commentButton = $('<button>').addClass('addcomment_button').text('답글').on('click', function () {
-              var time = new Date();
-              time.setHours(time.getHours() + 9);
-
-              var re_comment_param = {};
-              re_comment_param.comment_id = incCmtId;
-              re_comment_param.user_id = 1;
-              re_comment_param.cf_id = 1;
-              // re_comment_param.content = $("#re_comment").val();
-              re_comment_param.content = $re_commentInput.val();
-              re_comment_param.comment_datetime = time.toISOString().slice(0, 19).replace('T', ' ');
-              re_comment_param.comment_like = 0;
-              re_comment_param.comment_class = 1;
-              re_comment_param.comment_group = comment.comment_group;
-              re_comment_param.comment_level = 0;
-
-              $.ajax({
-                type : "POST",
-                url : "http://localhost:5500/cf/postCmt",
-                data : JSON.stringify(re_comment_param),
-                headers : {"content-type":"application/json; charset=utf-8"},
-                dataType : "json",
-              }).done((res) => {
-                location.reload();
-
-              }).fail((err)=>{
-                  console.log(err);
-              });
-              //post로 댓글 아래에 공간 만들어서 댓글 새로 다는 느낌
-              //근데 class로 부모, 자식 구분. 자식이면 들여쓰기
-              //정렬은 그룹>클래스 순으로 변경
-            });
-
-            const $hr = $('<hr>');
-            const $br = $('<br>');
-            const $enter = $('<span>↳</span>').css({'float': 'left','color': '#b1b1b1'})
-
-            $editForm.append($editInput, $saveButton);
-            $re_commentForm.append($re_commentInput, $Add_re_commentButton);
-
-
-
-            const $liRow = $('<li>').addClass('comment_row');
-            $liRow.append();
-
-            if (comment.comment_class == 1){
-              $liUser.css('padding', '2px 2px 2px 30px')
-              $liContent.css('padding', '2px 2px 2px 30px')
-              $liTime.css('padding', '0px 2px 0px 30px')
-              $editForm.css('padding', '0px 0px 0px 30px')
-
-              $re_commentList.append($liUser, $enter, $liContent, $liTime, $deleteButton, $editButton, $editForm, $br, $hr);
-            }
-            else{
-              $liUser.css('padding', '2px 2px 2px 10px')
-              $commentList.append($liUser, $liContent, $liTime, $deleteButton, $editButton, $re_commentButton, $editForm, $br, $re_commentForm, $br, $hr);
-            }
-          });
-        }  
       });
     </script>
   </body>

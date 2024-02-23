@@ -17,7 +17,7 @@
       integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
       crossorigin="anonymous"
     ></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
     <script>
       function ctgToNum(str) {
         switch (str.toLowerCase()) {
@@ -27,9 +27,9 @@
             return 2;
           case "javascript":
             return 3;
-          // 다른 경우에 대한 처리를 추가할 수 있습니다.
+
           default:
-            return -1; // 변환할 수 없는 경우 -1 또는 다른 기본값을 반환합니다.
+            return -1;
         }
       }
       $(document).ready(() => {
@@ -81,36 +81,59 @@
         }
       });
     </script>
-    <script type="text/javascript">
-      var incCmtId = 15;
-      function addpost(user_ID) {
-        var time = new Date();
+    <script>
+      $(document).ready(function () {
+        // URL에서 lan_id를 가져옴
+        const urlParams = new URLSearchParams(window.location.search);
+        const lanId = urlParams.get("lan_id");
+        getEditPost();
 
-        var param = {};
-        param.user_id = 3;
-        param.lan_category = $("#inputCtg").val();
-        param.lan_title = $("#inputTitle").val();
-        param.lan_content = $("#inputText").val();
-        param.lan_file = $("#inputFile").val();
-        param.lan_post_time = time.toISOString().slice(0, 19).replace("T", " ");
-
-        var inputValue = $("#inputCtg").val();
-        var convertedValue = ctgToNum(inputValue);
-        param.lan_category = convertedValue;
+        function getEditPost() {
+          $.ajax({
+            type: "GET",
+            url: "http://localhost:5500/lan/getLanBoard?lan_id=" + lanId,
+            dataType: "json",
+          })
+            .done((postData) => {
+              console.log("postData");
+              console.log(postData);
+              display_edit(postData);
+            })
+            .fail((xhr, status, error) => {
+              console.error("글 가져오기 실패:", xhr, status, error);
+              alert("글을 가져오는 중에 오류가 발생했습니다.");
+            });
+        }
+        function display_edit(postData) {
+          document.getElementById("inputTitle").value =
+            postData.Data[0].lan_title;
+          document.getElementById("inputText").value =
+            postData.Data[0].lan_content;
+        }
+      });
+      function savepost(user_ID) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const lanId = urlParams.get("lan_id");
+        const editParam = {};
+        editParam.lan_id = lanId;
+        editParam.lan_title = $("#inputTitle").val();
+        editParam.lan_content = $("#inputText").val();
 
         $.ajax({
-          type: "POST",
-          url: "http://localhost:5500/lan/postLanBoard",
-          data: JSON.stringify(param),
-          headers: { "content-type": "application/json; charset=utf-8" },
+          type: "PUT",
+          url: "http://localhost:5500/lan/editLanBoard",
+          data: JSON.stringify(editParam),
+          headers: {
+            "content-type": "application/json; charset=utf-8",
+          },
           dataType: "json",
         })
-          .done((res) => {
-            alert("S2등록 완료2S");
+          .done((postData) => {
+            alert("S2수정 완료2S");
             location.href = "/List.html";
           })
-          .fail((err) => {
-            console.log(err);
+          .fail((xhr, status, error) => {
+            console.error("게시글 수정 실패:", xhr, status, error);
           });
       }
     </script>
@@ -212,8 +235,8 @@
             </div>
           </div>
           <div class="pt-btn">
-            <button class="pt-btn-" type="button" onclick="addpost()">
-              등록
+            <button class="pt-btn-" type="button" onclick="savepost()">
+              저장
             </button>
           </div>
         </div>

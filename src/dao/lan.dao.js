@@ -18,8 +18,9 @@ async function postLanBoard(req) {
 async function getLanBoard(req) {
   console.log(req.lan_id);
   return new Promise((resolve, reject) => {
-    var queryData = `SELECT lan_id, user_id, lan_category, lan_title, lan_content, lan_file, lan_post_time, lan_edit_time
-            FROM language 
+    var queryData = `SELECT language.*, user.nickname
+            FROM language
+            JOIN user ON language.user_id = user.user_id 
             WHERE language.lan_id = ${req.lan_id}`;
     console.log(queryData);
     db.query(queryData, (error, db_data) => {
@@ -35,7 +36,7 @@ async function editLanBoard(req) {
   console.log(req.lan_id);
   return new Promise((resolve, reject) => {
     var queryData = `update language
-        set lan_title='${req.lan_title}', lan_content=${req.lan_content}, lan_file=${req.lan_file}, lan_edit_time='${req.lan_edit_time}' 
+        set lan_title='${req.lan_title}', lan_content='${req.lan_content}' 
         where lan_id=${req.lan_id} `;
     console.log(queryData);
     db.query(queryData, (error, db_data) => {
@@ -49,8 +50,7 @@ async function editLanBoard(req) {
 }
 async function delLanBoard(req) {
   return new Promise((resolve, reject) => {
-    var queryData = `delete from language 
-        where lan_id=${req.lan_id} `;
+    var queryData = `delete from language where lan_id = ${req.lan_id}`;
     console.log(queryData);
     db.query(queryData, (error, db_data) => {
       if (error) {

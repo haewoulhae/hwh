@@ -45,13 +45,16 @@ textarea {
 .pt-write .pt-title input[type="text"] {
   margin-bottom: 20px;
   width: 150%;
+  height: 55px;
+  font-size: 25px;
+  font-weight: bold;
   border: none;
 }
 
 .pt-write .pt-text textarea {
   width: 150%;
   height: 500px;
-  font: inherit;
+  font-size: 20px;
   font-weight: bold;
   border: none;
   resize: none;
@@ -59,9 +62,8 @@ textarea {
   vertical-align: top;
 }
 
-.pt-write input[type="file"] {
-  border: none;
-  box-shadow: none;
+#inputFile {
+  all: unset;
   padding: 10px;
 }
 
@@ -73,7 +75,7 @@ textarea {
 }
 
 .pt-btn- {
-  background-color: rgb(168, 216, 239);
+  background-color: #ccc;
   padding: 10px;
   font-weight: bold;
   color: black;
@@ -82,6 +84,7 @@ textarea {
 /* 게시물 확인 css */
 .pt-container {
   margin-top: 10%;
+  margin-left: 5%;
   text-align: center;
 }
 .pt-btn-con {
@@ -168,8 +171,29 @@ textarea {
   width: 100%;
 }
 #post-userid {
-  font-size: 100px;
+  padding: 0%;
+  font-size: 30px;
+  font-weight: bold;
 }
 #post-title {
-  font-size: 155px;
+  margin-top: 5%;
+  padding: 0%;
+  font-size: 50px;
+  font-weight: bold;
+}
+#post-content {
+  margin-top: 5%;
+  margin-bottom: 10%;
+  padding: 0%;
+  font-size: 30px;
+}
+.pt--btn {
+  background-color: #ccc;
+  padding: 10px;
+  float: right;
+  font-weight: bold;
+  font-size: 15px;
+  color: black;
+  border-radius: 10px;
+  margin-right: 5px;
 }
