@@ -27,9 +27,8 @@
             return 2;
           case "javascript":
             return 3;
-          // 다른 경우에 대한 처리를 추가할 수 있습니다.
           default:
-            return -1; // 변환할 수 없는 경우 -1 또는 다른 기본값을 반환합니다.
+            return 4;
         }
       }
       $(document).ready(() => {
@@ -87,31 +86,60 @@
         var time = new Date();
 
         var param = {};
-        param.user_id = 3;
+        param.user_id = 1;
         param.lan_category = $("#inputCtg").val();
         param.lan_title = $("#inputTitle").val();
         param.lan_content = $("#inputText").val();
         param.lan_file = $("#inputFile").val();
         param.lan_post_time = time.toISOString().slice(0, 19).replace("T", " ");
 
+        var param2 = {};
+        param2.user_id = 3;
+        param2.cf_category = $("#inputCtg").val();
+        param2.cf_title = $("#inputTitle").val();
+        param2.cf_content = $("#inputText").val();
+        param2.cf_post_time = time.toISOString().slice(0, 19).replace("T", " ");
+
         var inputValue = $("#inputCtg").val();
         var convertedValue = ctgToNum(inputValue);
         param.lan_category = convertedValue;
+        param2.cf_category = convertedValue;
 
-        $.ajax({
-          type: "POST",
-          url: "http://localhost:5500/lan/postLanBoard",
-          data: JSON.stringify(param),
-          headers: { "content-type": "application/json; charset=utf-8" },
-          dataType: "json",
-        })
-          .done((res) => {
-            alert("S2등록 완료2S");
-            location.href = "/List.html";
+        if (
+          param.lan_category == 1 ||
+          param.lan_category == 2 ||
+          param.lan_category == 3
+        ) {
+          $.ajax({
+            type: "POST",
+            url: "http://localhost:5500/lan/postLanBoard",
+            data: JSON.stringify(param),
+            headers: { "content-type": "application/json; charset=utf-8" },
+            dataType: "json",
           })
-          .fail((err) => {
-            console.log(err);
-          });
+            .done((res) => {
+              alert("S2등록 완료2S");
+              location.href = "/List.html";
+            })
+            .fail((err) => {
+              console.log(err);
+            });
+        } else {
+          $.ajax({
+            type: "POST",
+            url: "http://localhost:5500/cf/postBoard",
+            data: JSON.stringify(param2),
+            headers: { "content-type": "application/json; charset=utf-8" },
+            dataType: "json",
+          })
+            .done((res) => {
+              alert("S2등록 완료2S");
+              location.href = "/List.html";
+            })
+            .fail((err) => {
+              console.log(err);
+            });
+        }
       }
     </script>
   </head>
@@ -190,7 +218,8 @@
               <select id="inputCtg" name="category">
                 <option value="html">Html</option>
                 <option value="css">Css</option>
-                <option value="javascript">JavaScript</option></select
+                <option value="javascript">JavaScript</option>
+                <option value="cfPost">Cf-Post</option></select
               ><br /><br />
             </form>
             <div class="pt-title">

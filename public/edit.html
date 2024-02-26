@@ -29,7 +29,7 @@
             return 3;
 
           default:
-            return -1;
+            return 4;
         }
       }
       $(document).ready(() => {
@@ -83,10 +83,15 @@
     </script>
     <script>
       $(document).ready(function () {
-        // URL에서 lan_id를 가져옴
         const urlParams = new URLSearchParams(window.location.search);
         const lanId = urlParams.get("lan_id");
-        getEditPost();
+        const cfId = urlParams.get("cf_id");
+
+        if (lanId !== null) {
+          getEditPost();
+        } else {
+          getEditCf();
+        }
 
         function getEditPost() {
           $.ajax({
@@ -104,37 +109,86 @@
               alert("글을 가져오는 중에 오류가 발생했습니다.");
             });
         }
+        function getEditCf() {
+          $.ajax({
+            type: "GET",
+            url: "http://localhost:5500/cf/getBoard?cf_id=" + cfId,
+            dataType: "json",
+          })
+            .done((postData) => {
+              console.log("postData");
+              console.log(postData);
+              display_Cf(postData);
+            })
+            .fail((xhr, status, error) => {
+              console.error("글 가져오기 실패:", xhr, status, error);
+              alert("글을 가져오는 중에 오류가 발생했습니다.");
+            });
+        }
         function display_edit(postData) {
           document.getElementById("inputTitle").value =
             postData.Data[0].lan_title;
           document.getElementById("inputText").value =
             postData.Data[0].lan_content;
         }
+        function display_Cf(postData) {
+          document.getElementById("inputTitle").value =
+            postData.Data[0].cf_title;
+          document.getElementById("inputText").value =
+            postData.Data[0].cf_content;
+        }
       });
       function savepost(user_ID) {
         const urlParams = new URLSearchParams(window.location.search);
         const lanId = urlParams.get("lan_id");
-        const editParam = {};
-        editParam.lan_id = lanId;
-        editParam.lan_title = $("#inputTitle").val();
-        editParam.lan_content = $("#inputText").val();
+        const cfId = urlParams.get("cf_id");
 
-        $.ajax({
-          type: "PUT",
-          url: "http://localhost:5500/lan/editLanBoard",
-          data: JSON.stringify(editParam),
-          headers: {
-            "content-type": "application/json; charset=utf-8",
-          },
-          dataType: "json",
-        })
-          .done((postData) => {
-            alert("S2수정 완료2S");
-            location.href = "/List.html";
+        if (lanId !== null) {
+          const editParam = {};
+          editParam.lan_id = lanId;
+          editParam.lan_title = $("#inputTitle").val();
+          editParam.lan_content = $("#inputText").val();
+
+          $.ajax({
+            type: "PUT",
+            url: "http://localhost:5500/lan/editLanBoard",
+            data: JSON.stringify(editParam),
+            headers: {
+              "content-type": "application/json; charset=utf-8",
+            },
+            dataType: "json",
           })
-          .fail((xhr, status, error) => {
-            console.error("게시글 수정 실패:", xhr, status, error);
-          });
+            .done((postData) => {
+              alert("S2수정 완료2S");
+              location.href = "/List.html";
+            })
+            .fail((xhr, status, error) => {
+              console.error("게시글 수정 실패:", xhr, status, error);
+            });
+        } else if (cfId !== null) {
+          const editParam2 = {};
+          editParam2.cf_id = cfId;
+          editParam2.cf_title = $("#inputTitle").val();
+          editParam2.cf_content = $("#inputText").val();
+
+          $.ajax({
+            type: "PUT",
+            url: "http://localhost:5500/cf/postEdit",
+            data: JSON.stringify(editParam2),
+            headers: {
+              "content-type": "application/json; charset=utf-8",
+            },
+            dataType: "json",
+          })
+            .done((postData) => {
+              alert("S2수정 완료2S");
+              location.href = "/List.html";
+            })
+            .fail((xhr, status, error) => {
+              console.error("게시글 수정 실패:", xhr, status, error);
+            });
+        } else {
+        }
       }
     </script>
   </head>
@@ -213,7 +267,8 @@
               <select id="inputCtg" name="category">
                 <option value="html">Html</option>
                 <option value="css">Css</option>
-                <option value="javascript">JavaScript</option></select
+                <option value="javascript">JavaScript</option>
+                <option value="cfPost">Cf-Post</option></select
               ><br /><br />
             </form>
             <div class="pt-title">

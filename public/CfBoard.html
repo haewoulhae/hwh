@@ -209,10 +209,10 @@
       $(document).ready(() => {
         getposts();
         function getposts() {
-          var body = { lan_id: 37 };
+          var body = { cf_id: 15 };
           $.ajax({
             type: "GET",
-            url: "http://localhost:5500/lan/getLanBoard",
+            url: "http://localhost:5500/cf/getBoard",
             data: body,
             dataType: "json",
           })
@@ -241,27 +241,27 @@
                   .text(post.nickname);
                 const $lipTitle = $("<li>")
                   .attr("id", "post-title")
-                  .text(post.lan_title);
+                  .text(post.cf_title);
                 const $lipFile = $("<li>")
                   .attr("id", "post-file")
-                  .text(post.lan_file);
+                  .text(post.cf_file);
                 const $lipContent = $("<li>")
                   .attr("id", "post-content")
-                  .text(post.lan_content);
+                  .text(post.cf_content);
                 const $lipTime = $("<li>")
                   .attr("id", "post-time")
-                  .text(post.lan_post_time);
+                  .text(post.cf_post_time);
                 const $lipEditTime = $("<li>")
                   .attr("id", "edit-time")
-                  .text(post.lan_edit_time);
+                  .text(post.cf_edit_time);
 
                 //게시글 수정 페이지 이동
                 const $editBtn = $("<button>")
                   .addClass("pt--btn")
                   .text("수정")
                   .on("click", function () {
-                    console.log("수정 버튼 클릭 - lan_id:", post.lan_id);
-                    window.location.href = "/edit.html?lan_id=" + post.lan_id;
+                    console.log("수정 버튼 클릭 - Cf_id:", post.cf_id);
+                    window.location.href = "/edit.html?cf_id=" + post.cf_id;
                   });
 
                 // 게시글 삭제
@@ -269,15 +269,15 @@
                   .addClass("pt--btn")
                   .text("삭제")
                   .on("click", function () {
-                    console.log("삭제 버튼 클릭 - lan_id:", post.lan_id);
+                    console.log("삭제 버튼 클릭 - cf_id:", post.cf_id);
                     var confirmDelete = confirm("진짜 삭제한다고..???");
                     if (confirmDelete) {
                       var delparam = {};
-                      delparam.lan_id = post.lan_id;
+                      delparam.cf_id = post.cf_id;
 
                       $.ajax({
                         type: "DELETE",
-                        url: "http://localhost:5500/lan/delLanBoard",
+                        url: "http://localhost:5500/cf/postDel",
                         data: JSON.stringify(delparam),
                         headers: {
                           "content-type": "application/json; charset=utf-8",
